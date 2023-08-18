@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/script.js"></script>
+    <script src="./js/script.js" defer></script>
     <title>Bonus-Bonus-Aufgabe</title>
 </head>
 <body>
@@ -18,13 +18,13 @@
     </div>
     <div class="row">
         <div class="col">
-            <h6>Gradient start</h6>
-            <label for="redStart" class="form-label">Red</label>
-            <input type="range" class="form-range" id="redStart">
-            <label for="greenStart" class="form-label">Green</label>
-            <input type="range" class="form-range" id="greenStart">
-            <label for="blueStart" class="form-label">Blue</label>
-            <input type="range" class="form-range" id="blueStart">
+            <p class="h6">Gradient start</p>
+            <label for="redStart" class="form-label">Red <span class="badge bg-danger" id="redStartBadge">128</span></label>
+            <input type="range" class="form-range" id="redStart" min="0" max="255">
+            <label for="greenStart" class="form-label">Green <span class="badge bg-success" id="greenStartBadge">128</span></label>
+            <input type="range" class="form-range" id="greenStart" min="0" max="255">
+            <label for="blueStart" class="form-label">Blue <span class="badge bg-primary" id="blueStartBadge">128</span></label>
+            <input type="range" class="form-range" id="blueStart" min="0" max="255">
         </div>
         <div class="col d-flex justify-content-center align-items-center">
             <div id="gradient">
@@ -32,13 +32,13 @@
             </div>
         </div>
         <div class="col">
-            <h6>Gradient end</h6>
-            <label for="redEnd" class="form-label">Red</label>
-            <input type="range" class="form-range" id="redEnd">
-            <label for="greenEnd" class="form-label">Green</label>
-            <input type="range" class="form-range" id="greenEnd">
-            <label for="blueEnd" class="form-label">Blue</label>
-            <input type="range" class="form-range" id="blueEnd">
+            <p class="h6">Gradient end</p>
+            <label for="redEnd" class="form-label">Red <span class="badge bg-danger" id="redEndBadge">100</span></label>
+            <input type="range" class="form-range" id="redEnd" min="0" max="255">
+            <label for="greenEnd" class="form-label">Green <span class="badge bg-success" id="greenEndBadge">100</span></label>
+            <input type="range" class="form-range" id="greenEnd" min="0" max="255">
+            <label for="blueEnd" class="form-label">Blue <span class="badge bg-primary" id="blueEndBadge">100</span></label>
+            <input type="range" class="form-range" id="blueEnd" min="0" max="255">
         </div>
     </div>
 </div>
