@@ -24,3 +24,33 @@ operator.forEach((e) => {
         }
     });
 });
+
+/* Aufgabe 3: Text Addidtion */
+let textArea = document.getElementById('textArea');
+let addTextButton = document.getElementById('addText');
+let addedTextSpan = document.getElementById('addedText');
+let clearTextButton = document.getElementById('clearText');
+let backspaceButton = document.getElementById('backspace');
+
+addTextButton.addEventListener('click', () => {
+    addedTextSpan.innerHTML = textArea.value;
+    textArea.value = '';
+    console.log(addedTextSpan.innerHTML);
+    toggleBackspaceButton();
+});
+
+clearTextButton.addEventListener('click', () =>{
+   addedTextSpan.innerHTML = '';
+   toggleBackspaceButton();
+});
+
+backspaceButton.addEventListener('click', () => {
+   addedTextSpan.innerHTML = addedTextSpan.innerHTML.substring(0,addedText.innerHTML.length - 1);
+   toggleBackspaceButton();
+});
+
+function toggleBackspaceButton(){
+    addedTextSpan.innerHTML == '' ? backspaceButton.classList.add('d-none') : backspaceButton.classList.remove('d-none');
+}
+
+
