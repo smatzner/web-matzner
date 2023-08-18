@@ -43,7 +43,6 @@ let backspaceButton = document.getElementById('backspace');
 addTextButton.addEventListener('click', () => {
     addedTextSpan.innerHTML = textArea.value;
     textArea.value = '';
-    console.log(addedTextSpan.innerHTML);
     toggleBackspaceButton();
 });
 
