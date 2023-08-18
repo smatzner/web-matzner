@@ -1,5 +1,5 @@
 let gradientElement = document.getElementById('gradient');
-let gradients = {redStart: 0, greenStart: 0, blueStart: 0, redEnd: 0, greenEnd: 0, blueEnd: 0};
+let gradients = {redStart: 128, greenStart: 128, blueStart: 128, redEnd: 128, greenEnd: 128, blueEnd: 128};
 let ranges = document.querySelectorAll('.form-range');
 
 ranges.forEach((range) => {
