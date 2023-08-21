@@ -3,6 +3,8 @@ let personObj = {firstName: '', lastName: '', birthYear: 0};
 let form = document.getElementById('form');
 let deleteLastElement = document.getElementById('deleteLastElement');
 let deleteAll = document.getElementById('deleteAll');
+let sortByLastName = document.getElementById('sortByLastName');
+let sortByAge = document.getElementById('sortByAge');
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -29,6 +31,26 @@ deleteLastElement.addEventListener('click', () => {
 deleteAll.addEventListener('click',() => {
     peopleArray = [];
     render(peopleArray);
+});
+
+sortByLastName.addEventListener('click', () => {
+    peopleArray.sort((a,b) => {
+        let nameA = a.lastName.toUpperCase();
+        let nameB = b.lastName.toUpperCase();
+        if(nameA < nameB) {
+            return -1;
+        }
+        if(nameA > nameB) {
+            return 1;
+        }
+        return 0;
+    });
+    render(peopleArray);
+});
+
+sortByAge.addEventListener('click', () => {
+   peopleArray.sort((a,b) => getAge(a.birthYear) - getAge(b.birthYear));
+   render(peopleArray);
 });
 
 function getAge(birthYear) {
