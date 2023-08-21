@@ -1,7 +1,8 @@
 let peopleArray = [];
 let personObj = {firstName: '', lastName: '', birthYear: 0};
 let form = document.getElementById('form');
-let tbody = document.getElementById('tbody');
+let deleteLastElement = document.getElementById('deleteLastElement');
+let deleteAll = document.getElementById('deleteAll');
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -17,7 +18,17 @@ form.addEventListener('submit', (e) => {
     birthYear.value = '';
     console.log(personObj);
 
-    render(tbody, peopleArray);
+    render(peopleArray);
+});
+
+deleteLastElement.addEventListener('click', () => {
+    peopleArray.pop();
+    render(peopleArray);
+});
+
+deleteAll.addEventListener('click',() => {
+    peopleArray = [];
+    render(peopleArray);
 });
 
 function getAge(birthYear) {
@@ -26,15 +37,18 @@ function getAge(birthYear) {
     return age;
 }
 
-function render(tbody, peopleArray) {
+function render(peopleArray) {
+    let tbody = document.getElementById('tbody');
     let tableRow = '';
     peopleArray.forEach((personObj) => {
         tableRow +=
-            `<tr>
-                <td>${personObj.firstName}</td>
-                <td>${personObj.lastName}</td>
-                <td>${getAge(personObj.birthYear)}</td>
-            </tr>`;
+`<tr>
+    <td>${personObj.firstName}</td>
+    <td>${personObj.lastName}</td>
+    <td>${getAge(personObj.birthYear)}</td>
+</tr>`;
     });
     tbody.innerHTML = tableRow;
 }
+
+
