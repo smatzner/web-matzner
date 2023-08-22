@@ -13,8 +13,8 @@ gamble.addEventListener('click', () => {
     if(wager > money){
         result.innerHTML = `<p>Sie können nicht mehr setzen als sie besitzen</p>`;
     } else {
-        money -= wager;
 
+        money -= wager;
         options.forEach((option) => {
             if (option.checked) {
                 playerColor = option.id === 'colorRed' ? 'rot' : 'schwarz';
@@ -39,7 +39,6 @@ ${playerColor}
                 gamble.disabled = true;
             }
         }
-        console.log(money);
         moneyElement.innerHTML = money;
     }
 });
