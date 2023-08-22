@@ -1,37 +1,46 @@
 let money = 100;
-document.getElementById("money").innerHTML = money;
+let moneyElement = document.getElementById("money");
+moneyElement.innerHTML = money;
 let gamble = document.getElementById('gamble');
 let result = document.getElementById('result');
 
 gamble.addEventListener('click', () => {
-    let wager = document.getElementById('wager');
+    let wager = document.getElementById('wager').value;
     let options = document.getElementsByName('color');
     let playerColor;
     let casinoColor;
 
-    money -= wager;
+    if(wager > money){
+        result.innerHTML = `<p>Sie können nicht mehr setzen als sie besitzen</p>`;
+    } else {
+        money -= wager;
 
-    options.forEach((option) => {
-        if(option.checked){
-            playerColor = option;
-        }
-    });
+        options.forEach((option) => {
+            if (option.checked) {
+                playerColor = option.id === 'colorRed' ? 'rot' : 'schwarz';
+            }
+        });
 
-    playerColor.id === 'colorRed' ? playerColor = 'rot' : playerColor = 'schwarz';
-
-    result.innerHTML =
+        result.innerHTML =
 `<p>Spieler Farbe: 
 ${playerColor}
 </p>`;
 
-    casinoColor = createRandomColor();
-    result.innerHTML += `<p>Casino Farbe: ${casinoColor}</p>`;
+        casinoColor = createRandomColor();
+        result.innerHTML += `<p>Casino Farbe: ${casinoColor}</p>`;
 
-    if(playerColor === casinoColor){
-        money += wager * 2;
-        result.innerHTML += `<p>Herzlichen Glückwunsch Sie haben gewonnen! Ihr Guthaben hat sich erhöht</p>`;
-    } else {
-        result.innerHTML += `<p>Leider verloren!</p>`;
+        if (playerColor === casinoColor) {
+            money += wager * 2;
+            result.innerHTML += `<p>Herzlichen Glückwunsch Sie haben gewonnen! Ihr Guthaben hat sich erhöht</p>`;
+        } else {
+            result.innerHTML += `<p>Leider verloren!</p>`;
+            if(money === 0){
+                result.innerHTML += `<p>Sie haben kein Guthaben mehr. Die Bank gewinnt!</p>`;
+                gamble.disabled = true;
+            }
+        }
+        console.log(money);
+        moneyElement.innerHTML = money;
     }
 });
 
