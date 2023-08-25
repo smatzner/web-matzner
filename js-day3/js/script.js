@@ -24,8 +24,12 @@ function createPersonObject(firstName, lastName, birthYear) {
         firstName,
         lastName,
         birthYear,
-        // @TODO: ersetzen Sie den statischen Wert mit einem Getter und Setter, welcher das Alter anhand des birthYear berechnet, auch wenn dieses nachträglich geändert wird
-        age: 'age?'
+        get age(){
+            return new Date().getFullYear() - this.birthYear;
+        },
+        set age(age){
+            this.birthYear = new Date().getFullYear() - age;
+        }
     };
 }
 
