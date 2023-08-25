@@ -23,28 +23,43 @@ function createPersonObject(firstName, lastName, birthYear) {
         firstName,
         lastName,
         birthYear,
-        get age(){
+        get age() {
             return new Date().getFullYear() - this.birthYear;
         },
-        set age(age){
+        set age(age) {
             this.birthYear = new Date().getFullYear() - age;
         }
     };
 }
 
 personTableBody.addEventListener('click', (e) => {
-    if(e.target.classList.contains('delete-person')){
+    if (e.target.classList.contains('delete-person')) {
         let targetLastName = e.target.dataset.lastName;
         let targetFirstName = e.target.dataset.firstName;
         let nameIndex = persons.findIndex((person) => {
             return targetLastName === person.lastName && targetFirstName === person.firstName;
         });
-        if(window.confirm(`Wollen sie die Person ${targetFirstName} ${targetLastName} wirklich löschen?`)){
-            persons.splice(nameIndex,1);
+        if (window.confirm(`Wollen sie die Person ${targetFirstName} ${targetLastName} wirklich löschen?`)) {
+            persons.splice(nameIndex, 1);
         }
     }
-
     render()
+});
+
+sortTableButtons.forEach((sortTableButton) => {
+    sortTableButton.addEventListener('click', (e) => {
+        let sortKey = e.currentTarget.dataset.sortKey;
+        persons.sort((a, b) => {
+            if (a[sortKey] < b[sortKey]) {
+                return -1;
+            }
+            if (a[sortKey] > b[sortKey]) {
+                return 1;
+            }
+            return 0;
+        });
+        render();
+    });
 });
 
 // ************************************************************
