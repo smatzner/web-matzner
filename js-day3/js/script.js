@@ -1,4 +1,3 @@
-// @TODO: benutzen Sie personTableBody um die Aufgabe 1.2 zu erfüllen
 // Ändern Sie NICHT den Variablennamen - dieser wird auch im vorgegebenen Code verwendet
 const personTableBody = document.getElementById('personTableBody');
 
@@ -33,28 +32,20 @@ function createPersonObject(firstName, lastName, birthYear) {
     };
 }
 
-// Folgender Code wird nicht mehr benötigt, dient aber als Musterlösung für vorherige Übung und als Hilfestellung
-/*const sortByLastNameButton = document.getElementById('sortByLastNameButton');
-const sortByBirthYearButton = document.getElementById('sortByBirthYearButton');
+personTableBody.addEventListener('click', (e) => {
+    if(e.target.classList.contains('delete-person')){
+        let targetLastName = e.target.dataset.lastName;
+        let targetFirstName = e.target.dataset.firstName;
+        let nameIndex = persons.findIndex((person) => {
+            return targetLastName === person.lastName && targetFirstName === person.firstName;
+        });
+        if(window.confirm(`Wollen sie die Person ${targetFirstName} ${targetLastName} wirklich löschen?`)){
+            persons.splice(nameIndex,1);
+        }
+    }
 
-function getAge(birthYear) {
-    return (new Date()).getFullYear() - birthYear;
-}
-
-sortByLastNameButton.addEventListener('click', () => {
-    persons.sort((personA, personZ) => personA.lastName > personZ.lastName ? 1 : -1);
-    render();
+    render()
 });
-
-sortByBirthYearButton.addEventListener('click', () => {
-    persons.sort((personA, personZ) => personA.birthYear - personZ.birthYear);
-    render();
-});
-
-clearLastButton.addEventListener('click', () => {
-    persons.pop();
-    render();
-});*/
 
 // ************************************************************
 // AB HIER NICHTS ÄNDERN
