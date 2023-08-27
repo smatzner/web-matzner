@@ -1,7 +1,6 @@
 // Ändern Sie NICHT den Variablennamen - dieser wird auch im vorgegebenen Code verwendet
 const personTableBody = document.getElementById('personTableBody');
 
-// @TODO: benutzen Sie sortTableButtons um die Aufgabe 1.3 zu erfüllen
 const sortTableButtons = Array.from(document.getElementsByClassName('sort-table'));
 
 // @TODO: benutzen Sie die Aufgabe 1.4 zu erfüllen
@@ -60,6 +59,14 @@ sortTableButtons.forEach((sortTableButton) => {
         });
         render();
     });
+});
+
+printAllPersonsButton.addEventListener('click', () => {
+    let personsString = persons.reduce((prev, curr) => {
+        return prev + `${curr.firstName} ${curr.lastName} (${curr.age})\n`;
+    },'');
+
+    alert(personsString);
 });
 
 // ************************************************************
