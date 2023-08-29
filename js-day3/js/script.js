@@ -3,7 +3,6 @@ const personTableBody = document.getElementById('personTableBody');
 
 const sortTableButtons = Array.from(document.getElementsByClassName('sort-table'));
 
-// @TODO: benutzen Sie die Aufgabe 1.4 zu erfüllen
 const printAllPersonsButton = document.getElementById('printAllPersons');
 
 // Standardpersonen werden initial zum Array hinzugefügt und mittels render() angezeigt
