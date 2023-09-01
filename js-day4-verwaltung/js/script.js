@@ -1,4 +1,3 @@
-// @TODO: verwenden Sie personTableBody für den Punkt 1
 // Ändern Sie NICHT den Variablennamen - dieser wird auch im vorgegebenen Code verwendet
 const personTableBody = document.getElementById('personTableBody');
 
@@ -13,7 +12,11 @@ const changeAgeButton = document.getElementById('changeAge');
 let selectedPersonIndex = null;
 
 personTableBody.addEventListener('contextmenu', (e) => {
-    console.log(e);
+    e.preventDefault();
+    contextMenuElement.classList.add('show');
+    contextMenuElement.style.top = e.clientY + 'px';
+    contextMenuElement.style.right = window.innerWidth - e.pageX + 'px';
+
 });
 
 // ************************************************************
