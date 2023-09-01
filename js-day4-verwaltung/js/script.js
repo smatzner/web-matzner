@@ -8,6 +8,8 @@ let selectedPersonIndex = null;
 
 personTableBody.addEventListener('contextmenu', (e) => {
     e.preventDefault();
+    e.stopPropagation();
+    ``
     contextMenuElement.classList.add('show');
     contextMenuElement.style.top = e.clientY + 'px';
     contextMenuElement.style.right = window.innerWidth - e.pageX + 'px';
@@ -38,9 +40,12 @@ changeAgeButton.addEventListener('click', () => {
     render();
 });
 
-
 document.addEventListener('click', () => {
     contextMenuElement.classList.remove('show');
+});
+
+document.addEventListener('contextmenu', () => {
+   contextMenuElement.classList.remove('show');
 });
 
 // ************************************************************
