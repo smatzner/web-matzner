@@ -1,0 +1,40 @@
+#cursor {
+    display: block;
+    position: fixed;
+    border-radius: 50%;
+    width: 60px;
+    aspect-ratio: 1 / 1;
+    transform: translate(-50%, -50%);
+    transition: width .2s ease;
+    pointer-events: none;
+    animation: hyperactive-border 2s infinite normal;
+    box-shadow: 0 0 5px 1px currentColor;
+    top: 0;
+    left: 0;
+}
+
+#cursor.cursor-small {
+    width: 40px;
+    backdrop-filter: blur(2px);
+}
+
+@keyframes hyperactive-border {
+    0% {
+        color: deeppink;
+    }
+    20% {
+        color: deepskyblue;
+    }
+    40% {
+        color: lime;
+    }
+    60% {
+        color: darkorange;
+    }
+    80% {
+        color: black;
+    }
+    100% {
+        color: deeppink;
+    }
+}
