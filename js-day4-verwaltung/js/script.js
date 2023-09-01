@@ -1,7 +1,6 @@
 // Ändern Sie NICHT den Variablennamen - dieser wird auch im vorgegebenen Code verwendet
 const personTableBody = document.getElementById('personTableBody');
 
-// @TODO: verwenden Sie contextMenuElement für Punkt 2
 const contextMenuElement = document.getElementById('contextMenu');
 
 // @TODO: verwenden Sie deletePersonButton und changeAgeButton für den Punkt 5
@@ -17,13 +16,32 @@ personTableBody.addEventListener('contextmenu', (e) => {
     contextMenuElement.style.top = e.clientY + 'px';
     contextMenuElement.style.right = window.innerWidth - e.pageX + 'px';
 
-    let selectedIndex;
     e.composedPath().find((element) => {
-        selectedIndex = element.dataset?.index;
-        return selectedIndex;
+        selectedPersonIndex = element.dataset?.index;
+        return selectedPersonIndex;
     });
-    console.log(selectedIndex);
 });
+
+deletePersonButton.addEventListener('click', () => {
+    if(window.confirm(`Soll die Person ${persons[selectedPersonIndex].firstName} ${persons[selectedPersonIndex].lastName} gelöscht werden?`)){
+        persons.splice(selectedPersonIndex,1);
+    }
+
+    render();
+});
+
+changeAgeButton.addEventListener('click', () => {
+    let age = NaN;
+    for (let i = 0; i < 3 && isNaN(age); i++) {
+        age = parseInt(prompt('Geben Sie das neue Alter an'));
+    }
+    if (!isNaN(age)) {
+        persons[selectedPersonIndex].age = age;
+    }
+
+    render();
+});
+
 
 document.addEventListener('click', () => {
     contextMenuElement.classList.remove('show');
