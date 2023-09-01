@@ -17,6 +17,12 @@ personTableBody.addEventListener('contextmenu', (e) => {
     contextMenuElement.style.top = e.clientY + 'px';
     contextMenuElement.style.right = window.innerWidth - e.pageX + 'px';
 
+    let selectedIndex;
+    e.composedPath().find((element) => {
+        selectedIndex = element.dataset?.index;
+        return selectedIndex;
+    });
+    console.log(selectedIndex);
 });
 
 // ************************************************************
