@@ -12,24 +12,9 @@ const changeAgeButton = document.getElementById('changeAge');
 // @TODO: verwenden Sie selectedPersonIndex für den Punkt 3
 let selectedPersonIndex = null;
 
-// Folgender Code wird nicht mehr benötigt, dient aber als Musterlösung für vorherige Übung und als Hilfestellung
-/*const sortTableButtons = Array.from(document.getElementsByClassName('sort-table'));
-const printAllPersonsButton = document.getElementById('printAllPersons');
-
-printAllPersonsButton.addEventListener('click', () => {
-    const alertContent = persons.map(person => `${person.firstName} ${person.lastName} (${person.age})`).join('\r\n');
-    // Alternativ
-    // const alertContent = persons.reduce((output, person) => output + `${person.firstName} ${person.lastName} (${person.age})\r\n`, '')
-    alert(alertContent);
+personTableBody.addEventListener('contextmenu', (e) => {
+    console.log(e);
 });
-
-sortTableButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const sortKey = button.dataset.sortKey;
-        persons.sort((personA, personZ) => personA[sortKey] > personZ[sortKey] ? 1 : -1)
-        render();
-    });
-});*/
 
 // ************************************************************
 // AB HIER NICHTS ÄNDERN
