@@ -1,13 +1,9 @@
 // Ändern Sie NICHT den Variablennamen - dieser wird auch im vorgegebenen Code verwendet
 const personTableBody = document.getElementById('personTableBody');
-
 const contextMenuElement = document.getElementById('contextMenu');
-
-// @TODO: verwenden Sie deletePersonButton und changeAgeButton für den Punkt 5
 const deletePersonButton = document.getElementById('deletePerson');
 const changeAgeButton = document.getElementById('changeAge');
 
-// @TODO: verwenden Sie selectedPersonIndex für den Punkt 3
 let selectedPersonIndex = null;
 
 personTableBody.addEventListener('contextmenu', (e) => {
