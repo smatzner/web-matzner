@@ -25,6 +25,10 @@ personTableBody.addEventListener('contextmenu', (e) => {
     console.log(selectedIndex);
 });
 
+document.addEventListener('click', () => {
+    contextMenuElement.classList.remove('show');
+});
+
 // ************************************************************
 // AB HIER NICHTS ÄNDERN
 // ************************************************************
