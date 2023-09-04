@@ -9,7 +9,7 @@ let selectedPersonIndex = null;
 personTableBody.addEventListener('contextmenu', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    ``
+
     contextMenuElement.classList.add('show');
     contextMenuElement.style.top = e.clientY + 'px';
     contextMenuElement.style.right = window.innerWidth - e.pageX + 'px';
