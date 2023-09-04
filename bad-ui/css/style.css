@@ -9,6 +9,10 @@ body{
             rgb(228,243,253) 100%);
 }
 
+#changeDirection{
+    cursor: pointer;
+}
+
 .custom-range::-webkit-slider-thumb {
     background: #dc3545;
 }

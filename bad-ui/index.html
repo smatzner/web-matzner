@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/b9181b3591.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/script.js" defer></script>
     <title>Document</title>
@@ -22,17 +23,17 @@
 <div class="container-fluid">
     <div class="row d-flex justify-content-center mt-5">
         <div class="card col-9">
-            <form action="" class="bg-white card-body">
+            <form  action="" id="bookingForm" class="bg-white card-body">
                 <div class="row mb-5">
-                    <div class="col">
-                        <div class="form-floating">
+                    <div class="col-12 col-md-5">
+                        <div class="form-floating" id="fromDiv">
                             <input type="text" name="Von" id="fromInput" class="form-control" placeholder="Von">
                             <label for="fromInput">Von</label>
                         </div>
                     </div>
-                    <div class="col text-center align-self-center"><-></div>
-                    <div class="col">
-                        <div class="form-floating">
+                    <div id="changeDirection" class="col-1 col-md-2 text-center align-self-center"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+                    <div class="col col-md-5">
+                        <div class="form-floating" id="toDiv">
                             <input type="text" name="Nach" id="toInput" class="form-control" placeholder="Nach">
                             <label for="toInput">Nach</label>
                         </div>
@@ -41,8 +42,8 @@
                 <div class="row">
                     <div class="col">
                         <label for="dateRange" class="form-label">Datum und Uhrzeit</label>
-                        <input type="range" class="form-range custom-range" min="0" max="2871759600000" id="dateRange">
-                        <span id="dateSpan">13.07.2023 17:50</span>
+                        <input type="range" class="form-range custom-range" min="0" max="1767222000000" id="dateRange">
+                        <span id="dateSpan"></span>
                     </div>
                 </div>
                 <div class="row">
