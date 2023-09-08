@@ -7,22 +7,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous" defer></script>
     <script src="https://kit.fontawesome.com/b9181b3591.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/script.js" defer></script>
-    <title>Document</title>
+    <title>OidaBB</title>
 </head>
 <body>
 <nav class="navbar  bg-light-subtle">
     <div class="container-fluid">
         <a class="navbar-brand text-danger fw-bold" href="#">O<span class="fs-6">idaBB</span></a>
-        <p><a class="text-dark link-underline link-underline-opacity-0" href="">Hier</a><span
+        <p><a class="text-dark link-underline link-underline-opacity-0" href="./login.html">Hier</a><span
                 class="cursor-pointer text-decoration-underline"> Anmelden</span></p>
     </div>
 </nav>
+
 <div class="container-fluid">
     <div class="row d-flex justify-content-center mt-5">
-        <div class="card col-9">
+        <div class="card col-6">
             <form  action="" id="bookingForm" class="bg-white card-body">
                 <div class="row mb-5">
                     <div class="col-12 col-md-5">
@@ -48,12 +50,34 @@
                 </div>
                 <div class="row">
                     <div class="col d-flex justify-content-end">
-                        <button type="submit" class="btn btn-danger">Weiter</button>
+                        <button type="submit" id="submitButton" class="btn btn-danger">Weiter</button>
                     </div>
                 </div>
             </form>
+            <a href="">Don't click this Link!</a>
         </div>
     </div>
+
+    <!-- TODO: d-block hinzufügen-->
+    <div class="modal">
+        <div id="modalWindow" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title">🍪🍪🍪🍪🍪</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>This Website uses Cookies. Please eat them. I made them myself.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="closeCookies" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="acceptCookies" class="btn btn-danger">Eat Cookies</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cursor"></div>
 </div>
 </body>
 </html>
