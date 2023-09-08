@@ -33,6 +33,10 @@ body{
     border-radius: 50%;
 }
 
+#rickRollLink{
+    width: fit-content;
+}
+
 .custom-range::-webkit-slider-thumb {
     background: #dc3545;
 }

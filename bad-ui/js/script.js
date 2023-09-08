@@ -10,19 +10,29 @@ let cursor = document.getElementById('cursor');
 let cursorSize = 20;
 let submitButton = document.getElementById('submitButton');
 let rickRoll = false;
+let rickRollLinkRect = document.getElementById('rickRollLink').getBoundingClientRect();
 
-dateRangeElement.min = new Date() * 1;
+console.log(rickRollLinkRect);
+
+/* --- date elements --- */
 dateSpan.innerHTML = new Date().toLocaleString('de-AT', {dateStyle: "short", timeStyle: "short"});
+dateRangeElement.min = new Date() * 1;
 
+/* --- local storage check --- */
+if (localStorage['guest'] === 'rude') {
+    document.body.innerHTML = '<h1>Rude Guests are not welcome here. Please try a different railway company.</h1>';
+}
+
+
+/* --- mouse events --- */
 window.addEventListener('wheel', (e) => e.preventDefault(), {passive: false});
 
 window.addEventListener('mousemove', (e) => {
-    if (!rickRoll) {
+    if(!rickRoll){
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
     }
 });
-
 
 window.addEventListener('click', (e) => {
     cursorSize *= 1.1;
@@ -32,30 +42,19 @@ window.addEventListener('click', (e) => {
     let cursorRect = cursor.getBoundingClientRect();
 
     if ((cursorRect.top >= 350 && cursorRect.top <= 370) && (cursorRect.left >= 485 && cursorRect.left <= 630)) {
-        window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        // window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=1s','_blank');
     }
 });
 
-if (localStorage['guest'] === 'rude') {
-    document.body.innerHTML = '<h1>Rude Guests are not welcome here. Please try a different railway company.</h1>';
-}
+/* --- cookie events --- */
 closeCookies.addEventListener('click', () => {
     document.body.innerHTML = '<h1>Rude Guests are not welcome here. Please try a different railway company.</h1>';
     localStorage['guest'] = 'rude';
 });
 
-let eventCounter = 0;
+let cookiesEventCounter = 0;
 acceptCookies.addEventListener('mousemove', cookiesMouseMoveHandler);
-
-function cookiesMouseMoveHandler() {
-    eventCounter++;
-    modalWindow.style.top = Math.floor(Math.random() * 3000) + 'px';
-    modalWindow.style.left = Math.floor(Math.random() * 1000) + 'px';
-
-    if (eventCounter === 3) {
-        acceptCookies.removeEventListener('mousemove', cookiesMouseMoveHandler);
-    }
-}
 
 acceptCookies.addEventListener('click', () => {
     modal.classList.remove('d-block');
@@ -76,10 +75,35 @@ dateRangeElement.addEventListener('input', (e) => {
     dateSpan.innerHTML = selectedDate.toLocaleString('de-AT', {dateStyle: "short", timeStyle: "short"});
 });
 
-submitButton.addEventListener('click', (e) => {
+/* --- submit button events --- */
+let submitButtonEventCounter = 0;
+submitButton.addEventListener('mouseenter', submitButtonEventHandler);
+
+function cookiesMouseMoveHandler() {
+    cookiesEventCounter++;
+    modalWindow.style.top = Math.floor(Math.random() * 3000) + 'px';
+    modalWindow.style.left = Math.floor(Math.random() * 1000) + 'px';
+
+    if (cookiesEventCounter === 3) {
+        acceptCookies.removeEventListener('mousemove', cookiesMouseMoveHandler);
+    }
+}
+
+function submitButtonEventHandler(e){
+    submitButtonEventCounter++
     e.preventDefault();
     e.stopPropagation();
     rickRoll = true;
-    cursor.style.top = '360px';
-    cursor.style.left = '530px';
-})
+    let cursorRedirectY = rickRollLinkRect.y + rickRollLinkRect.height;
+    let cursorRedirectX = rickRollLinkRect.x + rickRollLinkRect.width / 2;
+    cursor.style.top = cursorRedirectY + 'px';
+    console.log(cursor.style.top);
+    cursor.style.left = cursorRedirectX + 'px';
+    window.setTimeout(() => {
+        rickRoll = false;
+    },1000)
+
+    if(submitButtonEventCounter === 2) {
+        submitButton.removeEventListener('mouseenter',submitButtonEventHandler);
+    }
+}
