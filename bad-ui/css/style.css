@@ -17,6 +17,17 @@ body{
     cursor: pointer;
 }
 
+#sideLoadOverlay{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    z-index: 20000;
+    transition: top 40s;
+}
+
 #modalWindow{
     position: absolute;
     top: 150px;
@@ -31,10 +42,27 @@ body{
     background: rgba(0,0,0,0.5);
     border: 1px solid black;
     border-radius: 50%;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
+    z-index: 10000;
+}
+
+#darkModeCursor{
+    position: absolute;
+    width: 8080px;
+    height: 8080px;
+    background-color: transparent;
+    border: 4000px solid black;
+    border-radius: 50%;
+    filter: blur(20px);
 }
 
 #rickRollLink{
     width: fit-content;
+}
+
+#darkModeOverlay{
+    overflow: hidden;
 }
 
 .custom-range::-webkit-slider-thumb {
