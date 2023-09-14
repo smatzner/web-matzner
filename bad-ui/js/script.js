@@ -41,8 +41,8 @@ if (localStorage['guest'] === 'rude') {
 
 // // TODO entfernen
 // if (localStorage['siteLoaded'] !== 'true') {
-//     siteLoadOverlay.classList.remove('d-none');
-//     document.addEventListener('dblclick', startSite);
+    siteLoadOverlay.classList.remove('d-none');
+    document.addEventListener('dblclick', startSite);
 // }
 
 
@@ -182,14 +182,14 @@ dateRangeElement.addEventListener('input', (e) => {
 let submitButtonEventCounter = 0;
 submitButton.addEventListener('mouseenter', submitButtonEventHandler);
 
-// function startSite() {
-//     siteLoadOverlay.style.top = '100%';
-//     setTimeout(() => {
-//         siteLoadOverlay.remove();
-//     }, 30000);
-//     document.removeEventListener('dblclick', startSite);
-//     localStorage['siteLoaded'] = 'true';
-// }
+function startSite() {
+    siteLoadOverlay.style.top = '100%';
+    setTimeout(() => {
+        siteLoadOverlay.remove();
+    }, 30000);
+    document.removeEventListener('dblclick', startSite);
+    // localStorage['siteLoaded'] = 'true';
+}
 
 function cookiesMouseMoveHandler() {
     cookiesEventCounter++;
