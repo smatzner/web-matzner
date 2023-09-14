@@ -1,5 +1,5 @@
 *{
-    cursor: none !important;
+    /*cursor: none !important;*/
 }
 
 body{
@@ -17,7 +17,7 @@ body{
     cursor: pointer;
 }
 
-#sideLoadOverlay{
+#siteLoadOverlay{
     position: absolute;
     top: 0px;
     left: 0px;
@@ -47,7 +47,22 @@ body{
     z-index: 10000;
 }
 
-#darkModeCursor{
+#darkModeOverlay{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 9000;
+    pointer-events: none;
+}
+
+#realDarkModeOverlay{
+    overflow: hidden;
+}
+
+#realDarkModeCursor{
     position: absolute;
     width: 8080px;
     height: 8080px;
@@ -55,14 +70,11 @@ body{
     border: 4000px solid black;
     border-radius: 50%;
     filter: blur(20px);
+    pointer-events: none;
 }
 
 #rickRollLink{
     width: fit-content;
-}
-
-#darkModeOverlay{
-    overflow: hidden;
 }
 
 .custom-range::-webkit-slider-thumb {

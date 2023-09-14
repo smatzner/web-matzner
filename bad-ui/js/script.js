@@ -17,8 +17,10 @@ let rickRoll = false;
 let rickRollLinkRect = document.getElementById('rickRollLink').getBoundingClientRect();
 let darkModeButton = document.getElementById('darkModeButton');
 let darkModeOverlay = document.getElementById('darkModeOverlay');
-let darkModeCursor = document.getElementById('darkModeCursor');
-let darkMode = false;
+let realDarkModeButton = document.getElementById('realDarkModeButton');
+let realDarkModeOverlay = document.getElementById('realDarkModeOverlay');
+let realDarkModeCursor = document.getElementById('realDarkModeCursor');
+let realDarkMode = false;
 let labels = document.querySelectorAll("label");
 
 
@@ -31,10 +33,8 @@ if (localStorage['guest'] === 'rude') {
     container.innerHTML = '<h1>Rude Guests are not welcome here. Please try a different railway company.</h1>';
 }
 
-/* siteLoadOverlay */
 if (localStorage['siteLoaded'] !== 'true') {
     siteLoadOverlay.classList.remove('d-none');
-    console.log(localStorage['siteLoaded']);
     document.addEventListener('dblclick', startSite);
 }
 
@@ -48,24 +48,23 @@ window.addEventListener('mousemove', (e) => {
         cursor.style.top = e.clientY + 'px';
     }
 
-    if (darkMode) {
+    if (realDarkMode) {
         let clientX = e.clientX - 4040;
         let clientY = e.clientY - 4040;
-        darkModeCursor.style.left = clientX + 'px';
-        darkModeCursor.style.top = clientY + 'px';
+        realDarkModeCursor.style.left = clientX + 'px';
+        realDarkModeCursor.style.top = clientY + 'px';
     }
 });
 
 window.addEventListener('click', (e) => {
-    cursorSize *= 1.1;
+    cursorSize *= 1.5;
     cursor.style.width = cursorSize + 'px';
     cursor.style.height = cursorSize + 'px';
 
     let cursorRect = cursor.getBoundingClientRect();
 
     if ((cursorRect.top >= 350 && cursorRect.top <= 370) && (cursorRect.left >= 485 && cursorRect.left <= 630)) {
-        // window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-        window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=1s', '_blank');
+        window.open('https://youtu.be/xvFZjo5PgG0?si=KryHi8U8OMf9AutX', '_blank');
     }
 });
 
@@ -84,10 +83,16 @@ acceptCookies.addEventListener('click', () => {
 
 /* --- dark mode event --- */
 darkModeButton.addEventListener('click', (e) => {
+    darkModeOverlay.classList.remove('d-none');
+    darkModeButton.classList.add('d-none');
+    realDarkModeButton.classList.remove('d-none');
+})
+
+realDarkModeButton.addEventListener('click', (e) => {
     e.stopPropagation();
-    darkMode = true;
-    darkModeOverlay.classList.remove("d-none");
-    darkModeButton.classList.add("d-none");
+    realDarkMode = true;
+    realDarkModeOverlay.classList.remove("d-none");
+    realDarkModeButton.classList.add("d-none");
 
     cursor.classList.add('d-none');
     labels.forEach((label) => {
@@ -96,8 +101,8 @@ darkModeButton.addEventListener('click', (e) => {
 
     document.body.style.overflow = 'hidden';
 
-    darkModeCursor.style.left = e.clientX + 'px';
-    darkModeCursor.style.top = e.clientY + 'px';
+    realDarkModeCursor.style.left = e.clientX + 'px';
+    realDarkModeCursor.style.top = e.clientY + 'px';
 });
 
 changeDirection.addEventListener('click', () => {
@@ -144,10 +149,11 @@ function cookiesMouseMoveHandler() {
 
 function submitButtonEventHandler(e) {
     submitButtonEventCounter++
+    bookingForm.addEventListener('submit', e => e.preventDefault());
     e.preventDefault();
     e.stopPropagation();
     rickRoll = true;
-    let cursorRedirectY = rickRollLinkRect.y + rickRollLinkRect.height;
+    let cursorRedirectY = rickRollLinkRect.y + rickRollLinkRect.height * 1.5;
     let cursorRedirectX = rickRollLinkRect.x + rickRollLinkRect.width / 2;
     cursor.style.top = cursorRedirectY + 'px';
     cursor.style.left = cursorRedirectX + 'px';
