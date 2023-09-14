@@ -1,5 +1,5 @@
 *{
-    /*cursor: none !important;*/
+    cursor: none !important;
 }
 
 body{
@@ -64,6 +64,8 @@ body{
 
 #realDarkModeCursor{
     position: absolute;
+    top: 0px;
+    left: 0px;
     width: 8080px;
     height: 8080px;
     background-color: transparent;
@@ -71,6 +73,11 @@ body{
     border-radius: 50%;
     filter: blur(20px);
     pointer-events: none;
+}
+
+#lightModeButton{
+    position: relative;
+    left: 600px;
 }
 
 #rickRollLink{

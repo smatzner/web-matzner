@@ -19,7 +19,7 @@
 
 <nav class="navbar navbar-expand-lg bg-light-subtle">
     <div class="container-fluid">
-        <a class="navbar-brand text-danger fw-bold" href="#">O<span class="fs-6">idaBB</span></a>
+        <a class="navbar-brand text-danger fw-bold" href="#" id="navbarBrand">O<span class="fs-6">idaBB</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -31,8 +31,8 @@
                     <button class="btn btn-dark d-none" id="realDarkModeButton">Real Dark Mode</button>
                 </li>
                 <li class="nav-item">
-                    <p class="nav-link m-0"><a class="text-dark link-underline link-underline-opacity-0"
-                                               href="./login.html">Hier</a><span
+                    <p class="nav-link m-0" id="loginParagraph"><a class="text-dark link-underline link-underline-opacity-0"
+                                               href="" id="loginLink">Hier</a><span
                             class="text-dark cursor-pointer text-decoration-underline"> Anmelden</span></p>
                 </li>
             </ul>
@@ -41,39 +41,73 @@
 </nav>
 
 <div class="container-fluid" id="container">
-    <div class="row d-flex justify-content-center mt-5">
-        <div class="card col-6">
-            <form action="" id="bookingForm" class="bg-white card-body">
-                <div class="row mb-5">
-                    <div class="col-12 col-md-5">
-                        <div class="form-floating" id="fromDiv">
-                            <input type="text" name="Von" id="fromInput" class="form-control" placeholder="Von">
-                            <label for="fromInput">Von</label>
+    <div id="index">
+        <div class="row d-flex justify-content-center mt-5">
+            <div class="card col-6">
+                <div id="bookingForm" class="bg-white card-body">
+                    <div class="row mb-5">
+                        <div class="col-12 col-md-5">
+                            <div class="form-floating" id="fromDiv">
+                                <input type="text" name="Von" id="fromInput" class="form-control" placeholder="Von">
+                                <label for="fromInput">Von</label>
+                            </div>
+                        </div>
+                        <div id="changeDirection" class="col-1 col-md-2 text-center align-self-center"><i
+                                class="fa-solid fa-arrow-right-arrow-left"></i></div>
+                        <div class="col col-md-5">
+                            <div class="form-floating" id="toDiv">
+                                <input type="text" name="Nach" id="toInput" class="form-control" placeholder="Nach">
+                                <label for="toInput">Nach</label>
+                            </div>
                         </div>
                     </div>
-                    <div id="changeDirection" class="col-1 col-md-2 text-center align-self-center"><i
-                            class="fa-solid fa-arrow-right-arrow-left"></i></div>
-                    <div class="col col-md-5">
-                        <div class="form-floating" id="toDiv">
-                            <input type="text" name="Nach" id="toInput" class="form-control" placeholder="Nach">
-                            <label for="toInput">Nach</label>
+                    <div class="row">
+                        <div class="col">
+                            <label for="dateRange" class="form-label">Datum und Uhrzeit</label>
+                            <input type="range" class="form-range custom-range" min="0" max="1767222000000"
+                                   id="dateRange">
+                            <span id="dateSpan"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex justify-content-end">
+                            <button type="submit" id="submitButton" class="btn btn-danger">Weiter</button>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <label for="dateRange" class="form-label">Datum und Uhrzeit</label>
-                        <input type="range" class="form-range custom-range" min="0" max="1767222000000" id="dateRange">
-                        <span id="dateSpan"></span>
-                    </div>
+                <a href="" id="rickRollLink">Don't click this Link!</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-none" id="login">
+        <div class="row d-flex justify-content-center mt-5">
+            <div class="card col-3">
+                <div class="card-body">
+                    <form action="" id="loginForm" class="bg-white card-body">
+                        <div class="row mb-5">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="password" name="email" id="email" class="form-control"
+                                           placeholder="E-Mail">
+                                    <label for="email">E-Mail</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" id="password" class="form-control" placeholder="Passwort">
+                                    <label for="password">Passwort</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col d-flex justify-content-end">
+                                <button type="submit" class="btn btn-danger">Weiter</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="row">
-                    <div class="col d-flex justify-content-end">
-                        <button type="submit" id="submitButton" class="btn btn-danger">Weiter</button>
-                    </div>
-                </div>
-            </form>
-            <a href="" id="rickRollLink">Don't click this Link!</a>
+            </div>
         </div>
     </div>
 
@@ -83,19 +117,22 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title"><span id="cookieEmojis">🍪🍪🍪</span></h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close closeCookies" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <p id="modalBody">This Website uses Cookies. Please eat them. I made them myself.</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="closeCookies" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                    <button type="button" class="btn btn-secondary closeCookies" data-bs-dismiss="modal">Close
                     </button>
                     <button type="button" id="acceptCookies" class="btn btn-danger">Eat Cookies</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <button class="btn btn-light d-none" id="lightModeButton">Light Mode</button>
 
 </div>
 <div id="cursor"></div>
@@ -104,8 +141,6 @@
 
 <div id="darkModeOverlay" class="d-none"></div>
 
-<div class="d-none" id="realDarkModeOverlay">
-    <div id="realDarkModeCursor"></div>
-</div>
+<div class="d-none" id="realDarkModeCursor"></div>
 </body>
 </html>
