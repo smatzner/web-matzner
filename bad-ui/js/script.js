@@ -39,11 +39,11 @@ if (localStorage['guest'] === 'rude') {
     container.innerHTML = '<h1>Rude Guests are not welcome here. Please try a different railway company.</h1>';
 }
 
-// TODO entfernen
-if (localStorage['siteLoaded'] !== 'true') {
-    siteLoadOverlay.classList.remove('d-none');
-    document.addEventListener('dblclick', startSite);
-}
+// // TODO entfernen
+// if (localStorage['siteLoaded'] !== 'true') {
+//     siteLoadOverlay.classList.remove('d-none');
+//     document.addEventListener('dblclick', startSite);
+// }
 
 
 /* --- mouse events --- */
@@ -182,14 +182,14 @@ dateRangeElement.addEventListener('input', (e) => {
 let submitButtonEventCounter = 0;
 submitButton.addEventListener('mouseenter', submitButtonEventHandler);
 
-function startSite() {
-    siteLoadOverlay.style.top = '100%';
-    setTimeout(() => {
-        siteLoadOverlay.remove();
-    }, 30000);
-    document.removeEventListener('dblclick', startSite);
-    localStorage['siteLoaded'] = 'true';
-}
+// function startSite() {
+//     siteLoadOverlay.style.top = '100%';
+//     setTimeout(() => {
+//         siteLoadOverlay.remove();
+//     }, 30000);
+//     document.removeEventListener('dblclick', startSite);
+//     localStorage['siteLoaded'] = 'true';
+// }
 
 function cookiesMouseMoveHandler() {
     cookiesEventCounter++;
