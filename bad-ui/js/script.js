@@ -143,8 +143,8 @@ realDarkModeButton.addEventListener('click', (e) => {
 
     let clientX = e.clientX - 4040;
     let clientY = e.clientY - 4040;
-    realDarkModeCursor.style.left = clientX + 'px';
-    realDarkModeCursor.style.top = clientY + 'px';
+    realDarkModeCursor.style.left = '-4000px';
+    realDarkModeCursor.style.top = '-4000px';
 
     setTimeout(() => {
         lightModeButton.classList.remove('d-none');
