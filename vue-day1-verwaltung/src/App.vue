@@ -2,6 +2,9 @@
   import {ref} from "vue";
 
   const personsArray = ref([])
+  const firstName = ref('')
+  const lastName = ref('')
+  const birthYear = ref()
 </script>
 
 <template>
@@ -14,15 +17,15 @@
           <form id="addPersonForm" class="mb-5">
             <div class="mb-3">
               <label class="form-label" for="addPersonFirstName">Vorname</label>
-              <input type="text" name="firstName" class="form-control" id="addPersonFirstName" required>
+              <input type="text" name="firstName" class="form-control" id="addPersonFirstName" v-model="firstName" required>
             </div>
             <div class="mb-3">
               <label class="form-label" for="addPersonLastName">Nachname</label>
-              <input type="text" name="lastName" class="form-control" id="addPersonLastName" required>
+              <input type="text" name="lastName" class="form-control" id="addPersonLastName" v-model="lastName" required>
             </div>
             <div class="mb-3">
               <label class="form-label" for="addPersonBirthYear">Geburtsjahr</label>
-              <input type="number" name="birthYear" class="form-control" id="addPersonBirthYear" required>
+              <input type="number" name="birthYear" class="form-control" id="addPersonBirthYear" v-model.number="birthYear" required>
             </div>
             <button type="submit" class="btn btn-success">Hinzufügen</button>
           </form>
