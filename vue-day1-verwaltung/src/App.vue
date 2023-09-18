@@ -1,10 +1,32 @@
 <script setup>
   import {ref} from "vue";
 
-  const personsArray = ref([])
+  const persons = ref([])
   const firstName = ref('')
   const lastName = ref('')
   const birthYear = ref()
+
+  function addPerson(){
+    persons.value.push(createPersonsObject(firstName.value,lastName.value,birthYear.value))
+
+    firstName.value = ''
+    lastName.value = ''
+    birthYear.value = ''
+  }
+
+  function createPersonsObject(firstName,lastName,birthYear){
+    return {
+      firstName,
+      lastName,
+      birthYear,
+      get age() {
+        return new Date().getFullYear() - this.birthYear
+      },
+      set age(age) {
+        this.birthYear = new Date().getFullYear() - age
+      }
+    }
+  }
 </script>
 
 <template>
@@ -14,7 +36,8 @@
       <div class="col-12 col-md-5">
         <div class="p-4 bg-light">
           <h2 class="mb-4">Person anlegen</h2>
-          <form id="addPersonForm" class="mb-5">
+<!--            TODO: entfernen?                                            TODO: entfernen -->
+          <form id="addPersonForm" class="mb-5" @submit.prevent="addPerson" novalidate>
             <div class="mb-3">
               <label class="form-label" for="addPersonFirstName">Vorname</label>
               <input type="text" name="firstName" class="form-control" id="addPersonFirstName" v-model="firstName" required>
