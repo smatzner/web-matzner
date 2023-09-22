@@ -1,32 +1,32 @@
 <script setup>
-  import {ref} from "vue";
+import {ref} from "vue";
 
-  const persons = ref([])
-  const firstName = ref('')
-  const lastName = ref('')
-  const birthYear = ref()
+const persons = ref([])
+const firstName = ref('')
+const lastName = ref('')
+const birthYear = ref()
 
-  function addPerson(){
-    persons.value.push(createPersonsObject(firstName.value,lastName.value,birthYear.value))
+function addPerson() {
+  persons.value.push(createPersonsObject(firstName.value, lastName.value, birthYear.value))
 
-    firstName.value = ''
-    lastName.value = ''
-    birthYear.value = ''
-  }
+  firstName.value = ''
+  lastName.value = ''
+  birthYear.value = ''
+}
 
-  function createPersonsObject(firstName,lastName,birthYear){
-    return {
-      firstName,
-      lastName,
-      birthYear,
-      get age() {
-        return new Date().getFullYear() - this.birthYear
-      },
-      set age(age) {
-        this.birthYear = new Date().getFullYear() - age
-      }
+function createPersonsObject(firstName, lastName, birthYear) {
+  return {
+    firstName,
+    lastName,
+    birthYear,
+    get age() {
+      return new Date().getFullYear() - this.birthYear
+    },
+    set age(age) {
+      this.birthYear = new Date().getFullYear() - age
     }
   }
+}
 </script>
 
 <template>
@@ -36,19 +36,21 @@
       <div class="col-12 col-md-5">
         <div class="p-4 bg-light">
           <h2 class="mb-4">Person anlegen</h2>
-<!--            TODO: entfernen?                                            TODO: entfernen -->
-          <form id="addPersonForm" class="mb-5" @submit.prevent="addPerson" novalidate>
+          <form class="mb-5" @submit.prevent="addPerson">
             <div class="mb-3">
               <label class="form-label" for="addPersonFirstName">Vorname</label>
-              <input type="text" name="firstName" class="form-control" id="addPersonFirstName" v-model="firstName" required>
+              <input type="text" name="firstName" class="form-control" id="addPersonFirstName" v-model="firstName"
+                     required>
             </div>
             <div class="mb-3">
               <label class="form-label" for="addPersonLastName">Nachname</label>
-              <input type="text" name="lastName" class="form-control" id="addPersonLastName" v-model="lastName" required>
+              <input type="text" name="lastName" class="form-control" id="addPersonLastName" v-model="lastName"
+                     required>
             </div>
             <div class="mb-3">
               <label class="form-label" for="addPersonBirthYear">Geburtsjahr</label>
-              <input type="number" name="birthYear" class="form-control" id="addPersonBirthYear" v-model.number="birthYear" required>
+              <input type="number" name="birthYear" class="form-control" id="addPersonBirthYear"
+                     v-model.number="birthYear" required>
             </div>
             <button type="submit" class="btn btn-success">Hinzufügen</button>
           </form>
