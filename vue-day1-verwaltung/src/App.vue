@@ -45,21 +45,18 @@ function createPersonsObject(firstName, lastName, birthYear) {
         <div class="p-4 bg-light">
           <h2 class="mb-4">Person anlegen</h2>
           <form class="mb-5" @submit.prevent="addPerson">
-            <div class="mb-3">
-              <label class="form-label" for="addPersonFirstName">Vorname</label>
-              <input type="text" name="firstName" class="form-control" id="addPersonFirstName" v-model="firstName"
-                     required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label" for="addPersonLastName">Nachname</label>
-              <input type="text" name="lastName" class="form-control" id="addPersonLastName" v-model="lastName"
-                     required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label" for="addPersonBirthYear">Geburtsjahr</label>
-              <input type="number" name="birthYear" class="form-control" id="addPersonBirthYear"
-                     v-model.number="birthYear" required>
-            </div>
+            <label class="d-block mb-4">
+              <span class="form-label">Vorname</span>
+              <input type="text" name="firstName" class="form-control" v-model="firstName" required>
+            </label>
+            <label class="d-block mb-4">
+              <span class="form-label">Nachname</span>
+              <input type="text" name="lastName" class="form-control" v-model="lastName" required>
+            </label>
+            <label class="d-block mb-4">
+              <span class="form-label">Geburtsjahr</span>
+              <input type="number" name="birthYear" class="form-control" v-model.number="birthYear" required>
+            </label>
             <button type="submit" class="btn btn-success">Hinzufügen</button>
           </form>
           <h2 class="mb-4">Aktionen</h2>
@@ -78,19 +75,15 @@ function createPersonsObject(firstName, lastName, birthYear) {
             <th>Alter</th>
           </tr>
           </thead>
-          <tbody id="personTableBody">
-            <tr v-for="person in persons">
-              <td>{{person.firstName}}</td>
-              <td>{{person.lastName}}</td>
-              <td>{{person.age}}</td>
-            </tr>
+          <tbody>
+          <tr v-for="person in persons">
+            <td>{{ person.firstName }}</td>
+            <td>{{ person.lastName }}</td>
+            <td>{{ person.age }}</td>
+          </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
 </template>
-
-<style scoped>
-
-</style>
