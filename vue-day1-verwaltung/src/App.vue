@@ -14,6 +14,14 @@ function addPerson() {
   birthYear.value = ''
 }
 
+function deleteLastPerson() {
+  persons.value.pop();
+}
+
+function clearAll() {
+  persons.value = [];
+}
+
 function createPersonsObject(firstName, lastName, birthYear) {
   return {
     firstName,
@@ -56,8 +64,8 @@ function createPersonsObject(firstName, lastName, birthYear) {
           </form>
           <h2 class="mb-4">Aktionen</h2>
           <div class="d-flex gap-3">
-            <button type="button" class="btn btn-danger" id="deletePersonButton">Letztes Element löschen</button>
-            <button type="button" class="btn btn-danger" id="clearAllButton">Alles löschen</button>
+            <button type="button" class="btn btn-danger" @click="deleteLastPerson">Letztes Element löschen</button>
+            <button type="button" class="btn btn-danger" @click="clearAll">Alles löschen</button>
           </div>
         </div>
       </div>
@@ -70,7 +78,13 @@ function createPersonsObject(firstName, lastName, birthYear) {
             <th>Alter</th>
           </tr>
           </thead>
-          <tbody id="personTableBody"></tbody>
+          <tbody id="personTableBody">
+            <tr v-for="person in persons">
+              <td>{{person.firstName}}</td>
+              <td>{{person.lastName}}</td>
+              <td>{{person.age}}</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
