@@ -1,10 +1,15 @@
 <script setup>
-defineProps({
+import {computed} from "vue";
+
+const props = defineProps({
   person: {
     required: true,
     type: Object
   }
 })
+
+const age = computed(() => new Date().getFullYear() - props.person.birthYear)
+
 
 </script>
 
@@ -12,10 +17,6 @@ defineProps({
   <tr>
     <td>{{ person.firstName }}</td>
     <td>{{ person.lastName }}</td>
-    <td>{{ person.birthYear }}</td>
+    <td>{{ age }}</td>
   </tr>
 </template>
-
-<style scoped>
-
-</style>

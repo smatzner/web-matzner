@@ -15,7 +15,7 @@ defineProps({
     <tr>
       <th>Vorname</th>
       <th>Nachname</th>
-      <th>Geburtsjahr</th>
+      <th>Alter</th>
     </tr>
     </thead>
     <tbody>
