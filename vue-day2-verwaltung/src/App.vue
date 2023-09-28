@@ -1,17 +1,11 @@
 <script setup>
 import {ref} from "vue";
+import PersonForm from "@/components/PersonForm.vue";
 
 const persons = ref([])
-const firstName = ref('')
-const lastName = ref('')
-const birthYear = ref()
 
-function addPerson() {
-  persons.value.push(createPersonsObject(firstName.value, lastName.value, birthYear.value))
-
-  firstName.value = ''
-  lastName.value = ''
-  birthYear.value = ''
+function addPerson(person){
+  persons.value.push(person)
 }
 
 function deleteLastPerson() {
@@ -44,21 +38,7 @@ function createPersonsObject(firstName, lastName, birthYear) {
       <div class="col-12 col-md-5">
         <div class="p-4 bg-light">
           <h2 class="mb-4">Person anlegen</h2>
-          <form class="mb-5" @submit.prevent="addPerson">
-            <label class="d-block mb-4">
-              <span class="form-label">Vorname</span>
-              <input type="text" name="firstName" class="form-control" v-model="firstName" required>
-            </label>
-            <label class="d-block mb-4">
-              <span class="form-label">Nachname</span>
-              <input type="text" name="lastName" class="form-control" v-model="lastName" required>
-            </label>
-            <label class="d-block mb-4">
-              <span class="form-label">Geburtsjahr</span>
-              <input type="number" name="birthYear" class="form-control" v-model.number="birthYear" required>
-            </label>
-            <button type="submit" class="btn btn-success">Hinzufügen</button>
-          </form>
+          <PersonForm @addPerson="addPerson"/>
           <h2 class="mb-4">Aktionen</h2>
           <div class="d-flex gap-3">
             <button type="button" class="btn btn-danger" @click="deleteLastPerson">Letztes Element löschen</button>
@@ -72,14 +52,14 @@ function createPersonsObject(firstName, lastName, birthYear) {
           <tr>
             <th>Vorname</th>
             <th>Nachname</th>
-            <th>Alter</th>
+            <th>Geburtsjahr</th>
           </tr>
           </thead>
           <tbody>
           <tr v-for="person in persons">
             <td>{{ person.firstName }}</td>
             <td>{{ person.lastName }}</td>
-            <td>{{ person.age }}</td>
+            <td>{{ person.birthYear }}</td>
           </tr>
           </tbody>
         </table>
