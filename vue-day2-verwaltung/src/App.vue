@@ -1,6 +1,8 @@
 <script setup>
 import {ref} from "vue";
 import PersonForm from "@/components/PersonForm.vue";
+import PersonEntry from "@/components/PersonEntry.vue";
+import PersonTable from "@/components/PersonTable.vue";
 
 const persons = ref([])
 
@@ -16,19 +18,19 @@ function clearAll() {
   persons.value = [];
 }
 
-function createPersonsObject(firstName, lastName, birthYear) {
-  return {
-    firstName,
-    lastName,
-    birthYear,
-    get age() {
-      return new Date().getFullYear() - this.birthYear
-    },
-    set age(age) {
-      this.birthYear = new Date().getFullYear() - age
-    }
-  }
-}
+// function createPersonsObject(firstName, lastName, birthYear) {
+//   return {
+//     firstName,
+//     lastName,
+//     birthYear,
+//     get age() {
+//       return new Date().getFullYear() - this.birthYear
+//     },
+//     set age(age) {
+//       this.birthYear = new Date().getFullYear() - age
+//     }
+//   }
+// }
 </script>
 
 <template>
@@ -47,22 +49,7 @@ function createPersonsObject(firstName, lastName, birthYear) {
         </div>
       </div>
       <div class="col-12 col-md-7">
-        <table class="table table-striped">
-          <thead>
-          <tr>
-            <th>Vorname</th>
-            <th>Nachname</th>
-            <th>Geburtsjahr</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr v-for="person in persons">
-            <td>{{ person.firstName }}</td>
-            <td>{{ person.lastName }}</td>
-            <td>{{ person.birthYear }}</td>
-          </tr>
-          </tbody>
-        </table>
+        <PersonTable :persons="persons"/>
       </div>
     </div>
   </div>
