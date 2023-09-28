@@ -7,6 +7,9 @@ defineProps({
     required: true
   }
 })
+
+const emit = defineEmits(['delete'])
+
 </script>
 
 <template>
@@ -19,7 +22,11 @@ defineProps({
     </tr>
     </thead>
     <tbody>
-    <PersonEntry v-for="person in persons" :person="person"/>
+    <PersonEntry
+        v-for="(person,index) in persons"
+        :person="person"
+        @delete="emit('delete', index)"
+    />
     </tbody>
   </table>
 </template>

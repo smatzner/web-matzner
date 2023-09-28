@@ -8,8 +8,9 @@ const props = defineProps({
   }
 })
 
-const age = computed(() => new Date().getFullYear() - props.person.birthYear)
+const emit = defineEmits(['delete'])
 
+const age = computed(() => new Date().getFullYear() - props.person.birthYear)
 
 </script>
 
@@ -18,5 +19,6 @@ const age = computed(() => new Date().getFullYear() - props.person.birthYear)
     <td>{{ person.firstName }}</td>
     <td>{{ person.lastName }}</td>
     <td>{{ age }}</td>
+    <td><button @click="emit('delete')" class="btn btn-danger"><i class="bi bi-trash"></i></button></td>
   </tr>
 </template>

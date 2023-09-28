@@ -25,6 +25,10 @@ function clearAll() {
   persons.value = [];
 }
 
+function deletePerson(index){
+  persons.value.splice(index)
+}
+
 // function createPersonsObject(firstName, lastName, birthYear) {
 //   return {
 //     firstName,
@@ -56,7 +60,10 @@ function clearAll() {
         </div>
       </div>
       <div class="col-12 col-md-7">
-        <PersonTable :persons="persons"/>
+        <PersonTable
+            :persons="persons"
+            @delete="deletePerson"
+        />
       </div>
     </div>
   </div>
