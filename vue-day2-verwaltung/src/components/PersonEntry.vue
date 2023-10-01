@@ -1,5 +1,8 @@
 <script setup>
-import {computed} from "vue";
+import {computed, ref} from "vue";
+import CustomDialog from "@/components/CustomDialog.vue";
+
+const isDialogOpen = ref(false)
 
 const props = defineProps({
   person: {
@@ -12,6 +15,10 @@ const emit = defineEmits(['delete'])
 
 const age = computed(() => new Date().getFullYear() - props.person.birthYear)
 
+function toggleDialogOpen(){
+  isDialogOpen.value = !isDialogOpen.value;
+}
+
 </script>
 
 <template>
@@ -19,6 +26,15 @@ const age = computed(() => new Date().getFullYear() - props.person.birthYear)
     <td>{{ person.firstName }}</td>
     <td>{{ person.lastName }}</td>
     <td>{{ age }}</td>
+    <td><button @click="isDialogOpen = true" class="btn btn-secondary"><i class="bi bi-pencil-square"></i></button></td>
     <td><button @click="emit('delete')" class="btn btn-danger"><i class="bi bi-trash"></i></button></td>
   </tr>
+  <CustomDialog
+    :person="person"
+    :is-dialog-open="isDialogOpen"
+    @update:model-value="toggleDialogOpen"
+  >
+    <p>Form</p>
+  </CustomDialog>
+
 </template>
