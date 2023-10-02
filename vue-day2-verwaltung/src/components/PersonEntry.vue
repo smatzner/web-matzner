@@ -47,7 +47,7 @@ function updatePerson(person) {
 <!--    addPerson umbenennen-->
     <PersonForm
         :person="person"
-        @addPerson="updatePerson"
+        @savePerson="updatePerson"
     />
   </CustomDialog>
 

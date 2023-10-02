@@ -41,7 +41,7 @@ function updatePerson(index, person) {
       <div class="col-12 col-md-5">
         <div class="p-4 bg-light">
           <h2 class="mb-4">Person anlegen</h2>
-          <PersonForm @addPerson="addPerson"/>
+          <PersonForm @savePerson="addPerson"/>
           <h2 class="mb-4">Aktionen</h2>
           <div class="d-flex gap-3">
             <button type="button" class="btn btn-danger" @click="deleteLastPerson">Letztes Element löschen</button>

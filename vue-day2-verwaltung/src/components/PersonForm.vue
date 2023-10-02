@@ -6,7 +6,7 @@ const lastName = ref('')
 const birthYear = ref()
 const submitButton = ref('Hinzufügen')
 
-const emit = defineEmits(['addPerson'])
+const emit = defineEmits(['savePerson'])
 
 const props = defineProps({
   person: {
@@ -23,8 +23,8 @@ watch(() => props.person, () => {
     },
     {immediate: true})
 
-function addPerson() {
-  emit('addPerson', {
+function savePerson() {
+  emit('savePerson', {
     firstName: firstName.value,
     lastName: lastName.value,
     birthYear: birthYear.value
@@ -37,7 +37,7 @@ function addPerson() {
 </script>
 
 <template>
-  <form class="mb-5" @submit.prevent="addPerson">
+  <form class="mb-5" @submit.prevent="savePerson">
     <label class="d-block mb-4">
       <span class="form-label">Vorname</span>
       <input type="text" name="firstName" class="form-control" v-model="firstName" required>
