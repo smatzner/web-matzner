@@ -34,6 +34,8 @@ function updatePerson(person) {
     <td>{{ person.firstName }}</td>
     <td>{{ person.lastName }}</td>
     <td>{{ age }}</td>
+<!--    TODO: entfernen-->
+    <td>{{person.id}}</td>
     <td>
       <button @click="isDialogOpen = true" class="btn btn-secondary"><i class="bi bi-pencil-square"></i></button>
     </td>
@@ -46,7 +48,6 @@ function updatePerson(person) {
       :is-dialog-open="isDialogOpen"
       @update:model-value="toggleDialogOpen"
   >
-<!--    addPerson umbenennen-->
     <PersonForm
         :person="person"
         @savePerson="updatePerson"

@@ -4,7 +4,7 @@ import {computed} from "vue";
 const props = defineProps({
   person: {
     required: true,
-    type: Object
+    type: Object,
   },
   isDialogOpen: {
     type: Boolean
