@@ -1,10 +1,12 @@
 <script setup>
 import {useRoute} from "vue-router";
 import {computed} from "vue";
+import {usePersonStore} from "@/store/PersonStore";
 
 const id = computed(() => useRoute().params.id)
+const personStore = usePersonStore()
 
-console.log(id.value)
+
 </script>
 
 <template>
