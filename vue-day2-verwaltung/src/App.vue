@@ -1,19 +1,18 @@
 <script setup>
 import {ref} from "vue";
 import PersonForm from "@/components/PersonForm.vue";
-import PersonEntry from "@/components/PersonEntry.vue";
 import PersonTable from "@/components/PersonTable.vue";
 
 const persons = ref([
   // TODO: entfernen
   {
     firstName: 'Max',
-    lastName: 'Mustermann',
-    birthYear: 1993
+        lastName: 'Mustermann',
+      birthYear: 1993
   }
 ])
 
-function addPerson(person) {
+  function addPerson(person) {
   persons.value.push(person)
 }
 
