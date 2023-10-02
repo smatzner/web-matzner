@@ -13,7 +13,21 @@ console.log(person)
 </script>
 
 <template>
-  <div>Details</div>
+  <h2>Personendetails</h2>
+  <table class="w-50">
+    <tr>
+      <th>Vorname</th>
+      <td>{{person.firstName}}</td>
+    </tr>
+    <tr>
+      <th>Nachname</th>
+      <td>{{person.lastName}}</td>
+    </tr>
+    <tr>
+      <th>Alter</th>
+      <td>{{person.birthYear}}</td>
+    </tr>
+  </table>
 </template>
 
 <style scoped>
