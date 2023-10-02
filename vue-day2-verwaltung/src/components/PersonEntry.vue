@@ -1,6 +1,7 @@
 <script setup>
 import {computed, ref} from "vue";
 import CustomDialog from "@/components/CustomDialog.vue";
+import PersonForm from "@/components/PersonForm.vue";
 
 const isDialogOpen = ref(false)
 
@@ -11,12 +12,17 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['delete'])
+const emit = defineEmits(['update', 'delete'])
 
 const age = computed(() => new Date().getFullYear() - props.person.birthYear)
 
-function toggleDialogOpen(){
+function toggleDialogOpen() {
   isDialogOpen.value = !isDialogOpen.value;
+}
+
+function updatePerson(person) {
+  emit('update', person)
+  isDialogOpen.value = false;
 }
 
 </script>
@@ -26,15 +32,23 @@ function toggleDialogOpen(){
     <td>{{ person.firstName }}</td>
     <td>{{ person.lastName }}</td>
     <td>{{ age }}</td>
-    <td><button @click="isDialogOpen = true" class="btn btn-secondary"><i class="bi bi-pencil-square"></i></button></td>
-    <td><button @click="emit('delete')" class="btn btn-danger"><i class="bi bi-trash"></i></button></td>
+    <td>
+      <button @click="isDialogOpen = true" class="btn btn-secondary"><i class="bi bi-pencil-square"></i></button>
+    </td>
+    <td>
+      <button @click="emit('delete')" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+    </td>
   </tr>
   <CustomDialog
-    :person="person"
-    :is-dialog-open="isDialogOpen"
-    @update:model-value="toggleDialogOpen"
+      :person="person"
+      :is-dialog-open="isDialogOpen"
+      @update:model-value="toggleDialogOpen"
   >
-    <p>Form</p>
+<!--    addPerson umbenennen-->
+    <PersonForm
+        :person="person"
+        @addPerson="updatePerson"
+    />
   </CustomDialog>
 
 </template>

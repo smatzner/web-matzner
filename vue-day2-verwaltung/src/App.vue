@@ -5,15 +5,15 @@ import PersonEntry from "@/components/PersonEntry.vue";
 import PersonTable from "@/components/PersonTable.vue";
 
 const persons = ref([
-    // TODO: entfernen
+  // TODO: entfernen
   {
-    firstName : 'Max',
-    lastName : 'Mustermann',
-    birthYear : 1993
+    firstName: 'Max',
+    lastName: 'Mustermann',
+    birthYear: 1993
   }
 ])
 
-function addPerson(person){
+function addPerson(person) {
   persons.value.push(person)
 }
 
@@ -25,23 +25,13 @@ function clearAll() {
   persons.value = [];
 }
 
-function deletePerson(index){
+function deletePerson(index) {
   persons.value.splice(index)
 }
 
-// function createPersonsObject(firstName, lastName, birthYear) {
-//   return {
-//     firstName,
-//     lastName,
-//     birthYear,
-//     get age() {
-//       return new Date().getFullYear() - this.birthYear
-//     },
-//     set age(age) {
-//       this.birthYear = new Date().getFullYear() - age
-//     }
-//   }
-// }
+function updatePerson(index, person) {
+  persons.value.splice(index,1,person)
+}
 </script>
 
 <template>
@@ -63,6 +53,7 @@ function deletePerson(index){
         <PersonTable
             :persons="persons"
             @delete="deletePerson"
+            @update="updatePerson"
         />
       </div>
     </div>

@@ -6,7 +6,7 @@ const props = defineProps({
     required: true,
     type: Object
   },
-  isDialogOpen : {
+  isDialogOpen: {
     type: Boolean
   }
 })
@@ -19,16 +19,13 @@ const emit = defineEmits(['update:modelValue'])
 
 <template>
   <dialog :open="isDialogOpen">
-<!--    TODO:
-          - Klick außerhalb des Dialogs-->
     <div @click.stop>
-
-      <h1>{{ title }}</h1>
+      <div class="d-flex justify-content-between">
+        <h1 class="h3">{{ title }}</h1>
+        <button @click="emit('update:modelValue')" class="btn-close"></button>
+      </div>
 
       <slot/>
-
-      <button @click="emit('update:modelValue')" class="btn btn-secondary me-1">Schließen</button>
-      <button class="btn btn-success">Bestätigen</button>
     </div>
   </dialog>
 </template>
@@ -50,8 +47,9 @@ dialog[open] {
   display: flex;
 }
 
-dialog div {
+dialog > div {
   background: white;
+  min-width: 700px;
   padding: 20px;
   border-radius: 6px;
   box-shadow: 0 6px 12px #00000066;

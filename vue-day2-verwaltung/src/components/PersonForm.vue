@@ -1,23 +1,39 @@
 <script setup>
-  import {ref} from "vue";
+import {ref, watch} from "vue";
 
-  const firstName = ref('')
-  const lastName = ref('')
-  const birthYear = ref()
+const firstName = ref('')
+const lastName = ref('')
+const birthYear = ref()
+const submitButton = ref('Hinzufügen')
 
-  const emit = defineEmits(['addPerson'])
+const emit = defineEmits(['addPerson'])
 
-  function addPerson() {
-    emit('addPerson', {
-      firstName : firstName.value,
-      lastName : lastName.value,
-      birthYear : birthYear.value
-    })
-
-    firstName.value = '';
-    lastName.value = '';
-    birthYear.value = null;
+const props = defineProps({
+  person: {
+    type: Object
   }
+})
+
+watch(() => props.person, () => {
+      if (props.person) {
+        firstName.value = props.person.firstName
+        lastName.value = props.person.lastName
+        birthYear.value = props.person.birthYear
+      }
+    },
+    {immediate: true})
+
+function addPerson() {
+  emit('addPerson', {
+    firstName: firstName.value,
+    lastName: lastName.value,
+    birthYear: birthYear.value
+  })
+
+  firstName.value = '';
+  lastName.value = '';
+  birthYear.value = null;
+}
 </script>
 
 <template>
@@ -34,7 +50,7 @@
       <span class="form-label">Geburtsjahr</span>
       <input type="number" name="birthYear" class="form-control" v-model.number="birthYear" required>
     </label>
-    <button type="submit" class="btn btn-success">Hinzufügen</button>
+    <button type="submit" class="btn btn-success">{{ submitButton }}</button>
   </form>
 </template>
 
