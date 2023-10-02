@@ -9,6 +9,8 @@ const props = defineProps({
   person: {
     required: true,
     type: Object
+  },
+  personStore: {
   }
 })
 

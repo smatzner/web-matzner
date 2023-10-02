@@ -1,30 +1,36 @@
 <script setup>
 import PersonTable from "@/components/PersonTable.vue";
 import {ref} from "vue";
+import {usePersonStore} from "@/store/PersonStore";
 
-const persons = ref([
-  // TODO: entfernen
-  {
-    firstName: 'Max',
-    lastName: 'Mustermann',
-    birthYear: 1993
-  }
-])
+const personStore = usePersonStore()
 
-function deletePerson(index) {
-  persons.value.splice(index)
-}
+// const persons = ref([
+//   // TODO: entfernen
+//   {
+//     firstName: 'Max',
+//     lastName: 'Mustermann',
+//     birthYear: 1993
+//   }
+// ])
 
-function updatePerson(index, person) {
-  persons.value.splice(index,1,person)
-}
+// function deletePerson(index) {
+//   persons.value.splice(index)
+// }
+//
+// function updatePerson(index, person) {
+//   persons.value.splice(index,1,person)
+// }
 </script>
 
 <template>
+<!--  <PersonTable-->
+<!--      :persons="persons"-->
+<!--      @delete="deletePerson"-->
+<!--      @update="updatePerson"-->
+<!--  />-->
   <PersonTable
-      :persons="persons"
-      @delete="deletePerson"
-      @update="updatePerson"
+    :persons="personStore.persons"
   />
 </template>
 

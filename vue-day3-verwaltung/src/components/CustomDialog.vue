@@ -26,6 +26,7 @@ const emit = defineEmits(['update:modelValue'])
       </div>
 
       <slot/>
+
     </div>
   </dialog>
 </template>
