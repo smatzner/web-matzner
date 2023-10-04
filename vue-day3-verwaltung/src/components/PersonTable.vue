@@ -8,8 +8,6 @@ defineProps({
   }
 })
 
-const emit = defineEmits(['update', 'delete'])
-
 </script>
 
 <template>
@@ -22,11 +20,15 @@ const emit = defineEmits(['update', 'delete'])
     </tr>
     </thead>
     <tbody>
+<!--    <PersonEntry-->
+<!--        v-for="(person,index) in persons"-->
+<!--        :person="person"-->
+<!--        @delete="emit('delete', index)"-->
+<!--        @update="person => emit('update', index, person)"-->
+<!--    /> -->
     <PersonEntry
         v-for="(person,index) in persons"
         :person="person"
-        @delete="emit('delete', index)"
-        @update="person => emit('update', index, person)"
     />
     </tbody>
   </table>

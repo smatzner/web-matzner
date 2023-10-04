@@ -13,9 +13,6 @@ const index = computed(() => personStore.persons.findIndex(person => person.id =
 
 const isDialogOpen = ref(false)
 
-console.log(id.value)
-console.log(person)
-
 function toggleDialogOpen() {
   isDialogOpen.value = !isDialogOpen.value;
 }
@@ -32,7 +29,6 @@ function updatePerson(person) {
 
 function deletePerson(){
   personStore.persons.splice(index.value,1)
-  console.log('Person gelöscht')
   router.push('/')
 }
 
@@ -72,7 +68,3 @@ function deletePerson(){
     />
   </CustomDialog>
 </template>
-
-<style scoped>
-
-</style>
