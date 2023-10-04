@@ -4,13 +4,16 @@ import {ref, watch} from "vue";
 const firstName = ref('')
 const lastName = ref('')
 const birthYear = ref()
-const submitButton = ref('Hinzufügen')
 
 const emit = defineEmits(['savePerson'])
 
 const props = defineProps({
   person: {
     type: Object
+  },
+  submitButton: {
+    type: String,
+    default: 'Hinzufügen'
   }
 })
 

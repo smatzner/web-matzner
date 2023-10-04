@@ -20,12 +20,6 @@ defineProps({
     </tr>
     </thead>
     <tbody>
-<!--    <PersonEntry-->
-<!--        v-for="(person,index) in persons"-->
-<!--        :person="person"-->
-<!--        @delete="emit('delete', index)"-->
-<!--        @update="person => emit('update', index, person)"-->
-<!--    /> -->
     <PersonEntry
         v-for="(person,index) in persons"
         :person="person"

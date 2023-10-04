@@ -1,9 +1,5 @@
 <script setup>
 import {computed, ref} from "vue";
-import CustomDialog from "@/components/CustomDialog.vue";
-import PersonForm from "@/components/PersonForm.vue";
-
-const isDialogOpen = ref(false)
 
 const props = defineProps({
   person: {
@@ -12,15 +8,7 @@ const props = defineProps({
   }
 })
 
-// const emit = defineEmits(['update', 'delete'])
-
 const age = computed(() => new Date().getFullYear() - props.person.birthYear)
-
-
-// function updatePerson(person) {
-//   emit('update', person)
-//   isDialogOpen.value = false;
-// }
 
 </script>
 

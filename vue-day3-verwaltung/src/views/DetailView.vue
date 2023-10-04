@@ -64,6 +64,7 @@ function deletePerson(){
   >
     <PersonForm
         :person="person"
+        :submitButton="'Änderung bestätigen'"
         @savePerson="updatePerson"
     />
   </CustomDialog>

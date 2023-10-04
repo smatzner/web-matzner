@@ -19,6 +19,7 @@ function addPerson(person) {
 </script>
 
 <template>
+  <h2>Person anlegen</h2>
   <PersonForm @savePerson="addPerson"/>
 </template>
 
