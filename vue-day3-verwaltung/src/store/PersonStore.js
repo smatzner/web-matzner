@@ -20,6 +20,11 @@ export const usePersonStore = defineStore('person', () => {
             firstName: 'Max',
             lastName: 'Mustermann',
             birthYear: 1999
+        },{
+            id: 1,
+            firstName: 'Maria',
+            lastName: 'Musterfrau',
+            birthYear: 2006
         }
     ])
 

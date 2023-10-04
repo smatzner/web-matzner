@@ -33,5 +33,4 @@ const age = computed(() => new Date().getFullYear() - props.person.birthYear)
       <RouterLink :to="`/persons/${person.id}`" class="btn btn-secondary">Details</RouterLink>
     </td>
   </tr>
-  <p>id {{person.id}}</p>
 </template>
