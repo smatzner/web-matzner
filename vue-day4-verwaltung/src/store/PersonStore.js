@@ -2,24 +2,6 @@ import {defineStore} from "pinia";
 import {ref} from "vue";
 import axios from "axios";
 
-// export const usePersonStore = defineStore('person', () => {
-//     const persons = ref([
-//         {
-//             id: 5,
-//             firstName: 'Max',
-//             lastName: 'Mustermann',
-//             birthYear: 1999
-//         },{
-//             id: 1,
-//             firstName: 'Maria',
-//             lastName: 'Musterfrau',
-//             birthYear: 2006
-//         }
-//     ])
-//
-//     return {persons}
-// })
-
 export const usePersonStore = defineStore('person', () => {
     const persons = ref([])
 
