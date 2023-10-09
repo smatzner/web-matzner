@@ -21,13 +21,14 @@ function toggleDialogOpen() {
   isDialogOpen.value = !isDialogOpen.value;
 }
 
-function updatePerson(person) {
-  personStore.persons.splice(index.value, 1, {
-    id,
-    firstName: person.firstName,
-    lastName: person.lastName,
-    birthYear: person.birthYear
-  })
+async function updatePerson(updatedPerson) {
+  await personStore.updatePerson(id.value,updatedPerson)
+  // personStore.persons.splice(index.value, 1, {
+  //   id,
+  //   firstName: person.firstName,
+  //   lastName: person.lastName,
+  //   birthYear: person.birthYear
+  // })
   isDialogOpen.value = false;
 }
 
