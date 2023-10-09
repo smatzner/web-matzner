@@ -33,11 +33,19 @@ export const usePersonStore = defineStore('person', () => {
         persons.value = personResponse.data
     }
 
-
+    async function loadPersonById(userId){
+        const personResponse = await axios.get('https://kzxyvuiwms.user-management.asw.rest/api/users/' + userId)
+        const person = persons.value.find(person => person.userId === personResponse.data.userId)
+        if(person === undefined){
+            persons.value.push(personResponse.data)
+        }
+        // console.log(personResponse.data.userId)
+    }
 
     return{
         persons,
         createPerson,
-        loadPersons
+        loadPersons,
+        loadPersonById
     }
 })

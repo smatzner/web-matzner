@@ -18,7 +18,7 @@ const age = computed(() => new Date().getFullYear() - props.person.birthYear)
     <td>{{ person.lastName }}</td>
     <td>{{ age }}</td>
     <td class="text-end">
-      <RouterLink :to="`/persons/${person.id}`" class="btn btn-secondary">Details</RouterLink>
+      <RouterLink :to="`/persons/${person.userId}`" class="btn btn-secondary">Details</RouterLink>
     </td>
   </tr>
 </template>
