@@ -1,9 +1,13 @@
 <script setup>
 import PersonTable from "@/components/PersonTable.vue";
 import {usePersonStore} from "@/store/PersonStore";
-import {computed} from "vue";
+import {computed, onBeforeMount, onMounted} from "vue";
 
 const personStore = usePersonStore()
+
+onBeforeMount(async () => {
+  await personStore.loadPersons()
+})
 
 const adults = computed(() => personStore.persons.filter(person => person.birthYear <= new Date().getFullYear() - 18))
 const children = computed(() => personStore.persons.filter(person => person.birthYear > new Date().getFullYear() - 18))

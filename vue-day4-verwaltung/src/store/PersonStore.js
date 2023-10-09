@@ -28,8 +28,16 @@ export const usePersonStore = defineStore('person', () => {
         persons.value.push(personResponse.data)
     }
 
+    async function loadPersons(){
+        const personResponse = await axios.get('https://kzxyvuiwms.user-management.asw.rest/api/users')
+        persons.value = personResponse.data
+    }
+
+
+
     return{
         persons,
-        createPerson
+        createPerson,
+        loadPersons
     }
 })
