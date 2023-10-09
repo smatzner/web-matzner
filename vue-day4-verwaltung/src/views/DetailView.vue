@@ -32,9 +32,9 @@ async function updatePerson(updatedPerson) {
   isDialogOpen.value = false;
 }
 
-function deletePerson() {
-  personStore.persons.splice(index.value, 1)
-  router.push('/')
+async function deletePerson() {
+  await personStore.deletePerson(id.value)
+  await router.push('/')
 }
 
 </script>

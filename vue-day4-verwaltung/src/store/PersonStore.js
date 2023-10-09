@@ -47,11 +47,18 @@ export const usePersonStore = defineStore('person', () => {
         persons.value.splice(personIndex, 1, personResponse.data)
     }
 
+    async function deletePerson(userId){
+        await axios.delete('https://kzxyvuiwms.user-management.asw.rest/api/users/' + userId)
+        const personIndex = persons.value.findIndex(person => person.userId === userId)
+        persons.value.splice(personIndex, 1)
+    }
+
     return {
         persons,
         createPerson,
         loadPersons,
         loadPersonById,
-        updatePerson
+        updatePerson,
+        deletePerson
     }
 })
