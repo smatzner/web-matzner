@@ -5,16 +5,14 @@ import {router} from "@/router";
 
 const personStore = usePersonStore()
 
-function addPerson(person) {
+async function addPerson(person) {
   console.log('Person hinzugefügt')
-  const id = Math.round(Math.random() * 100000)
-  personStore.persons.push({
-    id,
+  await personStore.createPerson({
     firstName: person.firstName,
     lastName: person.lastName,
     birthYear: person.birthYear
   })
-  router.push('/')
+  await router.push('/')
 }
 </script>
 
