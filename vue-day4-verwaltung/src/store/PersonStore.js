@@ -24,7 +24,7 @@ export const usePersonStore = defineStore('person', () => {
     }
 
     async function updatePerson(userId, updatedPerson) {
-        const personResponse = await axios.put('https://kzxyvuiwms.user-management.asw.rest/api/users/' + userId, updatedPerson)
+            const personResponse = await axios.put('https://kzxyvuiwms.user-management.asw.rest/api/users/' + userId, updatedPerson)
         const personIndex = persons.value.findIndex(person => person.userId === userId)
         persons.value.splice(personIndex, 1, personResponse.data)
     }

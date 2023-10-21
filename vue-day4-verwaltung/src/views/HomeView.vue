@@ -23,4 +23,4 @@ const children = computed(() => personStore.persons.filter(person => person.birt
 
 <style scoped>
 
-</style>
+</style>      
