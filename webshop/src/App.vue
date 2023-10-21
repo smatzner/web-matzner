@@ -13,7 +13,7 @@
     </nav>
   </header>
 
-  <div class="container">
+  <div class="container justify-content-center">
     <RouterView/>
   </div>
 </template>
