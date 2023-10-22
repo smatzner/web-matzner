@@ -1,15 +1,26 @@
 <script setup>
-// import {RouterLink, RouterView} from 'vue-router'
+import {onBeforeRouteUpdate, RouterLink, RouterView} from 'vue-router'
+import {useUserStore} from "./stores/UserStore";
+import {computed, onBeforeMount} from "vue";
+
+const userStore = useUserStore()
+
+
 </script>
 
 <template>
   <header>
     <nav class="nav nav-underline bg-body-tertiary p-2">
       <RouterLink to="/" class="nav-link ">Home</RouterLink>
-      <RouterLink to="/cart" class="nav-link ">Warenkorb (User)</RouterLink>
-      <RouterLink to="/products" class="nav-link">Produkte bearbeiten (Admin)</RouterLink>
-      <RouterLink to="/register" class="nav-link">Registrieren</RouterLink>
-      <RouterLink to="/login" class="nav-link">Login</RouterLink>
+      <RouterLink v-if="userStore.isUser" to="/cart" class="nav-link ">Warenkorb (User)</RouterLink>
+      <RouterLink v-if="userStore.isAdmin" to="/products" class="nav-link">Produkte bearbeiten (Admin)</RouterLink>
+      <template v-if="userStore.isLoggedIn">
+        <RouterLink @click="userStore.logout()" to="/" class="nav-link">Logout</RouterLink>
+      </template>
+      <template v-else>
+        <RouterLink to="/register" class="nav-link">Registrieren</RouterLink>
+        <RouterLink to="/login" class="nav-link">Login</RouterLink>
+      </template>
     </nav>
   </header>
 

@@ -1,8 +1,8 @@
 <script setup>
-import {userUserStore} from "../stores/UserStore";
+import {useUserStore} from "../stores/UserStore";
 import {ref} from "vue";
 
-const userStore = userUserStore()
+const userStore = useUserStore()
 
 const newUser = ref({
   email: '',
@@ -12,14 +12,14 @@ const newUser = ref({
   role: 'user'
 })
 
-async function createNewUser() {
-  await userStore.registerUser(newUser.value)
+async function register() {
+  await userStore.register(newUser.value)
 }
 </script>
 
 <template>
   <div class="card mt-5 w-50 mx-auto">
-    <form @submit.prevent="createNewUser" class="m-5">
+    <form @submit.prevent="register" class="m-5">
       <label class="d-block mb-3">
         <span class="form-label">E-Mail</span>
         <input v-model="newUser.email" type="email" class="form-control">
