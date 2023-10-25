@@ -16,6 +16,7 @@ const newUser = ref({
 async function register() {
   await userStore.register(newUser.value)
   await router.push('/')
+  // TODO: error handling
 }
 </script>
 

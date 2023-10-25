@@ -44,5 +44,3 @@ async function login() {
 <style>
 
 </style>
-<script setup>
-</script>

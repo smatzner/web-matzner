@@ -1,7 +1,6 @@
 import {defineStore} from "pinia";
 import {computed, ref} from "vue";
 import axios from "axios";
-import {router} from "../router";
 
 
 export const useUserStore = defineStore('user', () => {
@@ -43,13 +42,8 @@ export const useUserStore = defineStore('user', () => {
     async function login( loginUser) {
         try {
             const response = await axios.post(baseUri + 'api/auth/login', loginUser, createAxiosHeader())
-
             user.value = response.data.user
-
-            console.log('response', response)
-
             localStorage.setItem('token', response.data.jwt)
-
         } catch (error) {
             throw error
         }

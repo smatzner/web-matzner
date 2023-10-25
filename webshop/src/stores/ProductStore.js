@@ -20,8 +20,12 @@ export const useProductStore = defineStore('product', () => {
     }
 
     async function addProduct(newProduct) {
-        const response = await axios.post(baseUri + 'api/products/', newProduct, createAxiosHeader())
-        products.value += response.data
+        try{
+            const response = await axios.post(baseUri + 'api/products/', newProduct, createAxiosHeader())
+            products.value += response.data
+        } catch (error) {
+            throw error
+        }
     }
 
     return {

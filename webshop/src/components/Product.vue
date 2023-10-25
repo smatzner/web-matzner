@@ -12,7 +12,7 @@ const userStore = useUserStore();
 </script>
 
 <template>
-  <div class="col-12 col-md-6 col-xl-4 text-center">
+  <div class="col-12 col-md-6 col-xl-4 text-center align-self-center">
     <img :src="product.imageUrl" :alt="product.title" width="400">
     <div>{{ product.title }}</div>
     <div>{{ product.price }}€</div>
@@ -25,6 +25,12 @@ const userStore = useUserStore();
           <button class="btn btn-secondary form-control">+</button>
         </div>
         <button class="btn btn-primary m-3"><i class="bi bi-cart4"></i></button>
+      </div>
+    </template>
+    <template v-if="userStore.isAdmin">
+      <div class="d-flex justify-content-center">
+        <button class="btn btn-secondary m-2"><i class="bi bi-pencil-square"></i></button>
+        <button class="btn btn-danger m-2"><i class="bi bi-trash"></i></button>
       </div>
     </template>
   </div>
