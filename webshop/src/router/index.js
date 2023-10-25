@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CartView from "@/views/CartView.vue";
-import ProductsView from "@/views/ProductsView.vue";
+import ProductsView from "@/views/AddProductView.vue";
 import RegisterView from "@/views/RegisterView.vue";
 import LoginView from "@/views/LoginView.vue";
 
