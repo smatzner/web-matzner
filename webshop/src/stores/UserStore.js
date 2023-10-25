@@ -30,15 +30,23 @@ export const useUserStore = defineStore('user', () => {
     }
 
     async function checkIfLoggedIn() {
-        const response = await axios.get(baseUri + 'api/auth', createAxiosHeader())
-        user.value = response.data.user
+        user.value = 'pending';
+        try{
+            const response = await axios.get(baseUri + 'api/auth', createAxiosHeader())
+            user.value = response.data.user
+        } catch (error) {
+            console.error(error)
+            user.value = '';
+        }
     }
 
-    async function login(user) {
+    async function login( loginUser) {
         try {
-            const response = await axios.post(baseUri + 'api/auth/login', user, createAxiosHeader())
+            const response = await axios.post(baseUri + 'api/auth/login', loginUser, createAxiosHeader())
 
             user.value = response.data.user
+
+            console.log('response', response)
 
             localStorage.setItem('token', response.data.jwt)
 

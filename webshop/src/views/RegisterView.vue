@@ -1,6 +1,7 @@
 <script setup>
 import {useUserStore} from "../stores/UserStore";
 import {ref} from "vue";
+import {router} from "@/router";
 
 const userStore = useUserStore()
 
@@ -14,6 +15,7 @@ const newUser = ref({
 
 async function register() {
   await userStore.register(newUser.value)
+  await router.push('/')
 }
 </script>
 

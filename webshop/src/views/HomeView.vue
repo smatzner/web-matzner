@@ -13,19 +13,11 @@ onBeforeMount(async () => {
   await productStore.loadProducts()
 })
 
-
-// TODO: warum geht das nicht in der App.vue?
-onMounted(async () => {
-  try {
-    await userStore.checkIfLoggedIn();
-  } catch (error) {
-
-  }
-})
 </script>
 
 <template>
   <main>
+<!--    TODO: entfernen-->
     {{user?.email}}
     <WebShop :products="productStore.products"/>
   </main>
