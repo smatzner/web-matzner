@@ -34,7 +34,6 @@ export const useUserStore = defineStore('user', () => {
             const response = await axios.get(baseUri + 'api/auth', createAxiosHeader())
             user.value = response.data.user
         } catch (error) {
-            console.error(error)
             user.value = '';
         }
     }

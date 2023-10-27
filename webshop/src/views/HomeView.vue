@@ -9,6 +9,7 @@ const userStore = useUserStore()
 
 const user = computed(() => userStore.user)
 
+
 onBeforeMount(async () => {
   await productStore.loadProducts()
 })
@@ -17,8 +18,11 @@ onBeforeMount(async () => {
 
 <template>
   <main>
-<!--    TODO: entfernen-->
-    {{user?.email}}
-    <WebShop :products="productStore.products"/>
+    <template v-if="productStore.products.length > 0">
+      <WebShop :products="productStore.products"/>
+    </template>
+    <template v-else>
+      <div class="d-flex justify-content-center mt-3">Keine Produkte vorhanden!</div>
+    </template>
   </main>
 </template>

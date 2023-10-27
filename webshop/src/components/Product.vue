@@ -1,7 +1,6 @@
 <script setup>
 import {useUserStore} from "@/stores/UserStore";
 import {useProductStore} from "@/stores/ProductStore";
-import {computed} from "vue";
 import {router} from "@/router";
 
 defineProps({
@@ -14,8 +13,8 @@ defineProps({
 const userStore = useUserStore()
 const productStore = useProductStore()
 
-async function deleteProduct(productId){
-  if(confirm('löschen')){
+async function deleteProduct(productId) {
+  if (confirm('löschen')) {
     try {
       console.log(productId)
       await productStore.deleteProduct(productId)
@@ -47,9 +46,12 @@ async function deleteProduct(productId){
     </template>
     <template v-if="userStore.isAdmin">
       <div class="d-flex justify-content-center">
-<!--        <button class="btn btn-secondary m-2"><i class="bi bi-pencil-square"></i></button>-->
-        <RouterLink :to="`products/${product.productId}`" class="btn btn-secondary m-2"><i class="bi bi-pencil-square"></i></RouterLink>
-        <button @click="deleteProduct(product.productId)" class="btn btn-danger m-2"><i class="bi bi-trash"></i></button>
+        <RouterLink :to="`products/${product.productId}`" class="btn btn-secondary m-2">
+          <i class="bi bi-pencil-square"></i>
+        </RouterLink>
+        <button @click="deleteProduct(product.productId)" class="btn btn-danger m-2">
+          <i class="bi bi-trash"></i>
+        </button>
       </div>
     </template>
   </div>

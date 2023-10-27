@@ -4,7 +4,9 @@ import axios from "axios";
 
 export const useProductStore = defineStore('product', () => {
     const baseUri = 'https://abhditnhef.webshop.asw.rest/'
+    // const baseUri = 'https://gjpvdsudkw.webshop.asw.rest/'
     const products = ref([])
+
 
     function createAxiosHeader() {
         return {
