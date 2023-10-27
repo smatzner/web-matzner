@@ -19,8 +19,16 @@ export const useProductStore = defineStore('product', () => {
         products.value = response.data
     }
 
+    async function loadProductById(productId){
+        const response = await axios.get(baseUri + 'api/products/' + productId)
+        const product = products.value.find(product => product.productId === response.data.productId)
+        if(product === undefined) {
+            products.value.push(response.data)
+        }
+    }
+
     async function addProduct(newProduct) {
-        try{
+        try {
             const response = await axios.post(baseUri + 'api/products/', newProduct, createAxiosHeader())
             products.value += response.data
         } catch (error) {
@@ -28,9 +36,21 @@ export const useProductStore = defineStore('product', () => {
         }
     }
 
+    async function updateProduct(productId, updatedProduct){
+        try{
+            const response = await axios.put(baseUri + 'api/products/' + productId, updatedProduct, createAxiosHeader())
+            const productIndex = products.value.findIndex(product => product.productId === productId)
+            products.value.splice(productIndex, 1, response.data)
+        } catch (error){
+            throw error
+        }
+    }
+
     return {
         products,
         loadProducts,
-        addProduct
+        loadProductById,
+        addProduct,
+        updateProduct
     }
 })

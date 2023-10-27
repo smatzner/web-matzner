@@ -1,5 +1,6 @@
 <script setup>
 import {useUserStore} from "@/stores/UserStore";
+import {ref} from "vue";
 
 defineProps({
   product: {
@@ -7,6 +8,8 @@ defineProps({
     type: Object
   }
 })
+
+const isDialogOpen = ref(false)
 
 const userStore = useUserStore();
 </script>
@@ -29,11 +32,13 @@ const userStore = useUserStore();
     </template>
     <template v-if="userStore.isAdmin">
       <div class="d-flex justify-content-center">
-        <button class="btn btn-secondary m-2"><i class="bi bi-pencil-square"></i></button>
+<!--        <button class="btn btn-secondary m-2"><i class="bi bi-pencil-square"></i></button>-->
+        <RouterLink :to="`products/${product.productId}`" class="btn btn-secondary m-2"><i class="bi bi-pencil-square"></i></RouterLink>
         <button class="btn btn-danger m-2"><i class="bi bi-trash"></i></button>
       </div>
     </template>
   </div>
+
 </template>
 
 <style scoped>
