@@ -23,8 +23,8 @@ function toggleDialogOpen() {
 
 const errorMsg = ref('')
 
-async function updateProduct(updatedProduct){
-  try{
+async function updateProduct(updatedProduct) {
+  try {
     await productStore.updateProduct(id.value, updatedProduct)
     isDialogOpen.value = false
     await router.push('/')
@@ -56,8 +56,6 @@ async function updateProduct(updatedProduct){
       <td><img :src="product.imageUrl" :alt="product.title" width="200"></td>
     </tr>
   </table>
-  <!--  TODO: entfernen-->
-  {{ product.id }}
   <div class="mt-3">
     <button @click="isDialogOpen = true" class="btn btn-secondary m-1"><i class="bi bi-pencil-square"></i></button>
   </div>
@@ -65,13 +63,13 @@ async function updateProduct(updatedProduct){
   <CustomDialog
       :product="product"
       :is-dialog-open="isDialogOpen"
-      :errorMsg = "errorMsg"
+      :errorMsg="errorMsg"
       @update:model-value="toggleDialogOpen"
   >
     <ProductForm
-    :product="product"
-    :submitButton="'Änderung bestätigen'"
-    @saveProduct="updateProduct"
+        :product="product"
+        :submitButton="'Änderung bestätigen'"
+        @saveProduct="updateProduct"
     />
   </CustomDialog>
 </template>

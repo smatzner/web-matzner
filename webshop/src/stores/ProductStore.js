@@ -19,10 +19,10 @@ export const useProductStore = defineStore('product', () => {
         products.value = response.data
     }
 
-    async function loadProductById(productId){
+    async function loadProductById(productId) {
         const response = await axios.get(baseUri + 'api/products/' + productId)
         const product = products.value.find(product => product.productId === response.data.productId)
-        if(product === undefined) {
+        if (product === undefined) {
             products.value.push(response.data)
         }
     }
@@ -36,12 +36,22 @@ export const useProductStore = defineStore('product', () => {
         }
     }
 
-    async function updateProduct(productId, updatedProduct){
-        try{
+    async function updateProduct(productId, updatedProduct) {
+        try {
             const response = await axios.put(baseUri + 'api/products/' + productId, updatedProduct, createAxiosHeader())
             const productIndex = products.value.findIndex(product => product.productId === productId)
             products.value.splice(productIndex, 1, response.data)
-        } catch (error){
+        } catch (error) {
+            throw error
+        }
+    }
+
+    async function deleteProduct(productId) {
+        try {
+            await axios.delete(baseUri + 'api/products/' + productId, createAxiosHeader())
+            const productIndex = products.value.findIndex(product => product.productId === productId)
+            products.value.splice(productIndex, 1)
+        } catch (error) {
             throw error
         }
     }
@@ -51,6 +61,7 @@ export const useProductStore = defineStore('product', () => {
         loadProducts,
         loadProductById,
         addProduct,
-        updateProduct
+        updateProduct,
+        deleteProduct
     }
 })
