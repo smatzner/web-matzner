@@ -1,6 +1,7 @@
 import {defineStore} from "pinia";
-import {computed, ref} from "vue";
+import {computed, markRaw, ref} from "vue";
 import axios from "axios";
+import {useBasketStore} from "@/stores/BasketStore";
 
 
 export const useUserStore = defineStore('user', () => {
@@ -9,6 +10,7 @@ export const useUserStore = defineStore('user', () => {
     const isLoggedIn = computed(() => !!user.value)
     const isAdmin = computed(() => user.value?.role === 'admin')
     const isUser = computed(() => user.value?.role === 'user')
+    const basketStore = useBasketStore()
     function createAxiosHeader() {
         return {
             headers: {
@@ -43,12 +45,16 @@ export const useUserStore = defineStore('user', () => {
             const response = await axios.post(baseUri + 'api/auth/login', loginUser, createAxiosHeader())
             user.value = response.data.user
             localStorage.setItem('token', response.data.jwt)
+            if(user.value.role === 'user') {
+                await basketStore.loadBasket()
+            }
         } catch (error) {
             throw error
         }
     }
 
-    function logout(){
+    async function logout(){
+        if(user.value.role === 'user') await basketStore.resetBasket()
         user.value = null
         localStorage.removeItem('token')
     }

@@ -2,19 +2,23 @@
 import {useUserStore} from "@/stores/UserStore";
 import {useProductStore} from "@/stores/ProductStore";
 import {router} from "@/router";
+import {useBasketStore} from "@/stores/BasketStore";
+import {ref} from "vue";
+import CustomDialog from "@/components/CustomDialog.vue";
 
-defineProps({
+const props = defineProps({
   product: {
     required: true,
     type: Object
   }
 })
 
+
 const userStore = useUserStore()
 const productStore = useProductStore()
 
 async function deleteProduct(productId) {
-  if (confirm('löschen')) {
+  if (confirm('Soll das Produkt wirklich gelöscht werden?')) {
     try {
       console.log(productId)
       await productStore.deleteProduct(productId)
@@ -23,8 +27,29 @@ async function deleteProduct(productId) {
       console.error(error)
     }
   }
-
 }
+
+const baskeStore = useBasketStore()
+const itemCounter = ref(0)
+const basketItem = ref({
+  productId: props.product.productId,
+  amount: itemCounter,
+  remark: ''
+})
+const isDialogOpen = ref(false)
+
+function toggleDialogOpen() {
+  isDialogOpen.value = !isDialogOpen.value;
+}
+
+async function addProductToBasket(basketItem) {
+  try {
+    await baskeStore.addProductToBasket(basketItem)
+  } catch (e) {
+    console.error(e)
+  }
+}
+
 
 </script>
 
@@ -37,11 +62,13 @@ async function deleteProduct(productId) {
     <template v-if="userStore.isUser">
       <div class="d-flex justify-content-center">
         <div class="input-group w-25 m-3">
-          <button class="btn btn-secondary form-control">-</button>
-          <input type="text" class="form-control text-center" placeholder="1">
-          <button class="btn btn-secondary form-control">+</button>
+          <button @click="itemCounter = (itemCounter > 0) ? itemCounter - 1 : itemCounter"
+                  class="btn btn-secondary form-control">-
+          </button>
+          <input :value="itemCounter" type="text" class="form-control text-center">
+          <button @click="itemCounter++" class="btn btn-secondary form-control">+</button>
         </div>
-        <button class="btn btn-primary m-3"><i class="bi bi-cart4"></i></button>
+        <button @click="addProductToBasket(basketItem)" class="btn btn-primary m-3"><i class="bi bi-cart4"></i></button>
       </div>
     </template>
     <template v-if="userStore.isAdmin">

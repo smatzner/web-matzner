@@ -10,9 +10,11 @@ const props = defineProps({
     type: Boolean
   },
   errorMsg: {
-    required: true,
     type: String,
     default: ''
+  },
+  basketItem: {
+    type: Object
   }
 })
 
@@ -48,6 +50,7 @@ dialog {
   border: none;
   align-items: center;
   justify-content: center;
+  z-index: 1000;
 }
 
 dialog[open] {
