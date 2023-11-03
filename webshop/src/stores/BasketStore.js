@@ -5,7 +5,7 @@ import {useProductStore} from "@/stores/ProductStore";
 
 export const useBasketStore = defineStore('basket', () => {
     const baseUri = 'https://abhditnhef.webshop.asw.rest/'
-    const basket = ref()
+    const basket = ref([])
     const items = computed(() => basket.value.items)
     const productsInBasket = ref([])
 
@@ -19,6 +19,10 @@ export const useBasketStore = defineStore('basket', () => {
 
     async function addProductToBasket(basketItem) {
         try {
+            const product = productsInBasket.value.find(product => product.productId === basketItem.productId)
+            if (product) {
+                basketItem.amount += product.amount
+            }
             const response = await axios.post(baseUri + 'api/baskets/item', basketItem, createAxiosHeader())
             basket.value = response.data
             loadProductsInBasket()
@@ -36,6 +40,26 @@ export const useBasketStore = defineStore('basket', () => {
         }
 
         loadProductsInBasket()
+    }
+
+    async function updateBasketItem(productId, basketItem) {
+        try {
+            const response = await axios.put(baseUri + 'api/baskets/item/' + productId, basketItem, createAxiosHeader())
+            basket.value = response.data
+            await loadProductsInBasket()
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
+    async function deleteBasketItem(productId) {
+        try {
+            const response = await axios.delete(baseUri + 'api/baskets/item/' + productId, createAxiosHeader())
+            basket.value = response.data
+            await loadProductsInBasket()
+        } catch (e) {
+            console.error(e)
+        }
     }
 
     function loadProductsInBasket() {
@@ -67,12 +91,14 @@ export const useBasketStore = defineStore('basket', () => {
     }
 
     return {
-        baskets: basket,
+        basket,
         items,
         addProductToBasket,
         loadBasket,
         loadProductsInBasket,
         productsInBasket,
-        resetBasket
+        resetBasket,
+        updateBasketItem,
+        deleteBasketItem
     }
 })

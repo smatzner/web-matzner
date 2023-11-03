@@ -4,7 +4,7 @@ import {useProductStore} from "@/stores/ProductStore";
 import {router} from "@/router";
 import {useBasketStore} from "@/stores/BasketStore";
 import {ref} from "vue";
-import CustomDialog from "@/components/CustomDialog.vue";
+
 
 const props = defineProps({
   product: {
@@ -20,7 +20,6 @@ const productStore = useProductStore()
 async function deleteProduct(productId) {
   if (confirm('Soll das Produkt wirklich gelöscht werden?')) {
     try {
-      console.log(productId)
       await productStore.deleteProduct(productId)
       await router.push('/')
     } catch (error) {
@@ -29,25 +28,19 @@ async function deleteProduct(productId) {
   }
 }
 
-const baskeStore = useBasketStore()
 const itemCounter = ref(0)
+const basketStore = useBasketStore()
+
 const basketItem = ref({
   productId: props.product.productId,
   amount: itemCounter,
   remark: ''
 })
-const isDialogOpen = ref(false)
 
-function toggleDialogOpen() {
-  isDialogOpen.value = !isDialogOpen.value;
-}
 
 async function addProductToBasket(basketItem) {
-  try {
-    await baskeStore.addProductToBasket(basketItem)
-  } catch (e) {
-    console.error(e)
-  }
+  await basketStore.addProductToBasket(basketItem)
+  itemCounter.value = 0
 }
 
 

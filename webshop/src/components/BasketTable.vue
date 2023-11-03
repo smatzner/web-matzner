@@ -1,30 +1,33 @@
 <script setup>
-  const props = defineProps({
-    productsInBasket: {
-      type: Array,
-      required: true
-    }
-      })
+import {ref} from "vue";
+import BasketTableEntry from "@/components/BasketTableEntry.vue";
+
+const props = defineProps({
+  productsInBasket: {
+    type: Array,
+    required: true
+  }
+})
+
 </script>
 
 <template>
   <table class="table table-striped">
     <thead>
     <tr>
-      <th>Produkt</th>
-      <th>Anzahl</th>
-      <th>Anmerkung</th>
-      <th>Preis</th>
+      <th scope="col">Produkt</th>
+      <th scope="col">Anzahl</th>
+      <th scope="col">Anmerkung</th>
+      <th scope="col">Preis</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
-    <tr v-for="(product, index) in productsInBasket">
-      <td>{{ product.title }}</td>
-      <td>{{ product.amount }}</td>
-      <td>{{ product.remark }}</td>
-      <td>{{ product.totalPrice }}</td>
-      <td></td>
-    </tr>
+    <BasketTableEntry
+        v-for="(product, index) in productsInBasket"
+        :product="product"
+    />
     </tbody>
   </table>
 </template>

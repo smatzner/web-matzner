@@ -1,11 +1,13 @@
 <script setup>
 import WebShop from "@/components/WebShop.vue";
 import {useProductStore} from "@/stores/ProductStore";
-import {computed, onBeforeMount, onMounted} from "vue";
+import {computed, onBeforeMount} from "vue";
 import {useUserStore} from "../stores/UserStore";
+
 
 const productStore = useProductStore()
 const userStore = useUserStore()
+
 
 const user = computed(() => userStore.user)
 

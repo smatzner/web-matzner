@@ -3,6 +3,7 @@ import {RouterLink, RouterView} from 'vue-router'
 import {useUserStore} from "./stores/UserStore";
 import {computed, onMounted, watch} from "vue";
 import {useBasketStore} from "@/stores/BasketStore";
+import {useProductStore} from "@/stores/ProductStore";
 
 const userStore = useUserStore()
 const user = computed(() => userStore.user)
@@ -12,7 +13,6 @@ const basketProductsAmount = computed(() => basketStore.productsInBasket.reduce(
 onMounted(async () => {
   try {
     await userStore.checkIfLoggedIn()
-
   } catch (error) {
 
   }
@@ -22,7 +22,6 @@ onMounted(async () => {
   }
 })
 
-watch(basketProductsAmount, () => {},{immediate:true})
 
 //TODO: Seitenerreichbarkeit nach User Role
 
