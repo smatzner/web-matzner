@@ -26,6 +26,10 @@ const deliveryAddress = ref({
 const shippingType = ref(pickup ? 'pickup' : 'delivery')
 
 async function addDeliveryInfo() {
+  if(basketStore.items.length < 1){
+    console.log('no items in basket')
+    return
+  }
   await basketStore.addDeliveryInfo({
     invoiceAddress: {
       street: invoiceAddress.value.street,

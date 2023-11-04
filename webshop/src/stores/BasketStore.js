@@ -66,7 +66,6 @@ export const useBasketStore = defineStore('basket', () => {
         try {
             const response = await axios.put(baseUri + 'api/baskets', deliveryInfo, createAxiosHeader())
             basket.value = response.data
-            // await resetBasket()
         } catch (e) {
             console.error(e)
         }
