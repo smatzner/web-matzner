@@ -38,6 +38,7 @@ const basketItem = ref({
 })
 
 
+
 async function addProductToBasket(basketItem) {
   await basketStore.addProductToBasket(basketItem)
   itemCounter.value = 0

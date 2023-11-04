@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import {computed, ref} from "vue";
+import {computed, markRaw, ref} from "vue";
 import axios from "axios";
 import {useProductStore} from "@/stores/ProductStore";
 
@@ -62,6 +62,28 @@ export const useBasketStore = defineStore('basket', () => {
         }
     }
 
+    async function addDeliveryInfo(deliveryInfo) {
+        try {
+            const response = await axios.put(baseUri + 'api/baskets', deliveryInfo, createAxiosHeader())
+            basket.value = response.data
+            // await resetBasket()
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
+    async function sendOrder() {
+        try {
+            if (items.value) {
+                // Das macht nix im Backend 👇
+                await axios.post(baseUri + 'api/baskets/order', '', createAxiosHeader())
+                // await resetBasket()
+            }
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
     function loadProductsInBasket() {
         const productStore = useProductStore()
 
@@ -81,13 +103,12 @@ export const useBasketStore = defineStore('basket', () => {
             })
         })
 
-
         productsInBasket.value = products
     }
 
-    function resetBasket() {
-        productsInBasket.value = null
-        basket.value = null
+    async function resetBasket() {
+        const response = await axios.delete(baseUri + 'api/baskets', createAxiosHeader())
+        basket.value = response.data
     }
 
     return {
@@ -99,6 +120,8 @@ export const useBasketStore = defineStore('basket', () => {
         productsInBasket,
         resetBasket,
         updateBasketItem,
-        deleteBasketItem
+        deleteBasketItem,
+        addDeliveryInfo,
+        sendOrder
     }
 })

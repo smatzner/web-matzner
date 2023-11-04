@@ -1,14 +1,19 @@
 <script setup>
-import {RouterLink, RouterView} from 'vue-router'
+import {RouterLink, RouterView, useRoute} from 'vue-router'
 import {useUserStore} from "./stores/UserStore";
 import {computed, onMounted, watch} from "vue";
 import {useBasketStore} from "@/stores/BasketStore";
-import {useProductStore} from "@/stores/ProductStore";
+import {router} from "@/router";
 
 const userStore = useUserStore()
 const user = computed(() => userStore.user)
 const basketStore = useBasketStore()
-const basketProductsAmount = computed(() => basketStore.productsInBasket.reduce((total, product) => total + product.amount, 0))
+const basketProductsAmount = computed(() => {
+  if(router.currentRoute.value.path === '/basket/confirmed'){
+    return 0
+  }
+  return basketStore.productsInBasket.reduce((total, product) => total + product.amount, 0)
+})
 
 onMounted(async () => {
   try {

@@ -6,6 +6,9 @@ const props = defineProps({
   product: {
     required: true,
     type: Object
+  },
+  editMode:{
+    type: Boolean
   }
 })
 
