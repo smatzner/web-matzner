@@ -67,7 +67,7 @@ export const useBasketStore = defineStore('basket', () => {
             const response = await axios.put(baseUri + 'api/baskets', deliveryInfo, createAxiosHeader())
             basket.value = response.data
         } catch (e) {
-            console.error(e)
+            throw e
         }
     }
 
@@ -76,13 +76,12 @@ export const useBasketStore = defineStore('basket', () => {
             if (items.value) {
                 // Das macht nix im Backend 👇
                 await axios.post(baseUri + 'api/baskets/order', '', createAxiosHeader())
-                // await resetBasket()
             }
         } catch (e) {
             console.error(e)
         }
     }
-
+w
     function loadProductsInBasket() {
         const productStore = useProductStore()
 
@@ -108,6 +107,7 @@ export const useBasketStore = defineStore('basket', () => {
     async function resetBasket() {
         const response = await axios.delete(baseUri + 'api/baskets', createAxiosHeader())
         basket.value = response.data
+        productsInBasket.value = []
     }
 
     return {
