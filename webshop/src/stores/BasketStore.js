@@ -81,7 +81,7 @@ export const useBasketStore = defineStore('basket', () => {
             console.error(e)
         }
     }
-w
+
     function loadProductsInBasket() {
         const productStore = useProductStore()
 
