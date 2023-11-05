@@ -7,13 +7,13 @@ import {useUserStore} from "../stores/UserStore";
 
 const productStore = useProductStore()
 const userStore = useUserStore()
-
+const products = computed(() => productStore.products)
 
 const user = computed(() => userStore.user)
 
 
 onBeforeMount(async () => {
-  await productStore.loadProducts()
+  if(products.value.length < 1) await productStore.loadProducts()
 })
 
 </script>

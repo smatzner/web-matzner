@@ -50,7 +50,8 @@ export const useProductStore = defineStore('product', () => {
 
     async function deleteProduct(productId) {
         try {
-            await axios.delete(baseUri + 'api/products/' + productId, createAxiosHeader())
+            const response = await axios.delete(baseUri + 'api/products/' + productId, createAxiosHeader())
+            console.log(response)
             const productIndex = products.value.findIndex(product => product.productId === productId)
             products.value.splice(productIndex, 1)
         } catch (error) {

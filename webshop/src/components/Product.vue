@@ -16,6 +16,7 @@ const props = defineProps({
 
 const userStore = useUserStore()
 const productStore = useProductStore()
+const errorMsg = ref(false)
 
 async function deleteProduct(productId) {
   if (confirm('Soll das Produkt wirklich gelöscht werden?')) {
@@ -23,6 +24,7 @@ async function deleteProduct(productId) {
       await productStore.deleteProduct(productId)
       await router.push('/')
     } catch (error) {
+      if(error.response.status === 409) return errorMsg.value = "Produkt kann nicht gelöscht werden, es ist noch im Warenkorb eines Kundens"
       console.error(error)
     }
   }
@@ -74,6 +76,7 @@ async function addProductToBasket(basketItem) {
           <i class="bi bi-trash"></i>
         </button>
       </div>
+      <div v-if="errorMsg" class="alert alert-danger">{{errorMsg}}</div>
     </template>
   </div>
 

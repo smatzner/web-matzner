@@ -26,6 +26,8 @@ export const useUserStore = defineStore('user', () => {
 
         localStorage.setItem('token', response.data.jwt)
 
+        await login(user)
+
         // TODO: check if user exists
 
     }

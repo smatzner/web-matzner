@@ -35,6 +35,7 @@ export const useBasketStore = defineStore('basket', () => {
         try {
             const response = await axios.get(baseUri + 'api/baskets', createAxiosHeader())
             basket.value = response.data
+            loadProductsInBasket()
         } catch (error) {
             throw error
         }
@@ -76,6 +77,7 @@ export const useBasketStore = defineStore('basket', () => {
             if (items.value) {
                 // Das macht nix im Backend 👇
                 await axios.post(baseUri + 'api/baskets/order', '', createAxiosHeader())
+                await deleteBasket()
             }
         } catch (e) {
             console.error(e)
@@ -104,9 +106,14 @@ export const useBasketStore = defineStore('basket', () => {
         productsInBasket.value = products
     }
 
-    async function resetBasket() {
+    async function deleteBasket() {
         const response = await axios.delete(baseUri + 'api/baskets', createAxiosHeader())
         basket.value = response.data
+        productsInBasket.value = []
+    }
+
+    function resetBasket(){
+        basket.value = []
         productsInBasket.value = []
     }
 
@@ -117,10 +124,10 @@ export const useBasketStore = defineStore('basket', () => {
         loadBasket,
         loadProductsInBasket,
         productsInBasket,
-        resetBasket,
         updateBasketItem,
         deleteBasketItem,
         addDeliveryInfo,
-        sendOrder
+        sendOrder,
+        resetBasket
     }
 })

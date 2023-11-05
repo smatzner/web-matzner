@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from "vue";
+import {ref, watch} from "vue";
 import {useBasketStore} from "@/stores/BasketStore";
 import "@/validations/validations";
 import {router} from "@/router";
@@ -15,16 +15,22 @@ const invoiceAddress = ref({
 })
 
 const deliveryAddress = ref({
-  street: null,
-  number: null,
-  zip: null,
-  city: null,
-  country: null
+  street: '',
+  number: '',
+  zip: '',
+  city: '',
+  country: ''
 })
 
 const shippingType = ref('pickup')
 
 const errorMsg = ref('')
+
+watch(shippingType, (value) => {
+  if(value === 'delivery'){
+    deliveryAddress.value = { ...invoiceAddress.value}
+  }
+},{immediate: true})
 
 async function addDeliveryInfo() {
   if (basketStore.items.length < 1) {
@@ -70,20 +76,8 @@ async function addDeliveryInfo() {
 }
 </script>
 <template>
-  <form @submit.prevent="addDeliveryInfo" class="row" novalidate>
+  <form @submit.prevent="addDeliveryInfo" class="row">
     <h2>Rechnungsadresse</h2>
-    <div class="form-check">
-      <label class="form-check-label">
-        <input type="radio" name="shippingType" class="form-check-input" v-model="shippingType" :value="'pickup'">
-        <span class="form-label ms-1">Abholung</span>
-      </label>
-    </div>
-    <div class="form-check">
-      <label class="form-check-label">
-        <input type="radio" name="shippingType" class="form-check-input" v-model="shippingType" :value="'delivery'">
-        <span class="form-label ms-1">Lieferung</span>
-      </label>
-    </div>
     <label class="col-md-9 d-block mt-2">
       <span class="form-label">Straße</span>
       <input type="text" class="form-control" v-model="invoiceAddress.street" required>
@@ -109,7 +103,7 @@ async function addDeliveryInfo() {
       <div v-if="errorMsg" class="alert alert-danger">{{errorMsg}}</div>
       <label class="col-md-9 d-block mt-2">
         <span class="form-label">Straße</span>
-        <input type="text" class="form-control" v-model="deliveryAddress.street" required>
+        <input type="text" class="form-control" v-model="deliveryAddress.street"  required>
       </label>
       <label class="col-md-3 d-block mt-2">
         <span class="form-label">Nummer</span>
@@ -128,6 +122,18 @@ async function addDeliveryInfo() {
         <input type="text" class="form-control" v-model="deliveryAddress.country" required>
       </label>
     </template>
+    <div class="form-check text-end mt-3">
+      <label class="form-check-label">
+        <input type="radio" name="shippingType" class="form-check-input" v-model="shippingType" :value="'pickup'">
+        <span class="form-label ms-1">Abholung</span>
+      </label>
+    </div>
+    <div class="form-check text-end">
+      <label class="form-check-label">
+        <input type="radio" name="shippingType" class="form-check-input" v-model="shippingType" :value="'delivery'">
+        <span class="form-label ms-1">Lieferung</span>
+      </label>
+    </div>
     <div class="col-12 text-end">
       <button type="submit" class="btn btn-secondary mt-3">Bestellung abschicken</button>
     </div>

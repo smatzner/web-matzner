@@ -9,21 +9,17 @@ const userStore = useUserStore()
 const user = computed(() => userStore.user)
 const basketStore = useBasketStore()
 const basketProductsAmount = computed(() => {
-  if(router.currentRoute.value.path === '/basket/confirmed'){
+  if (router.currentRoute.value.path === '/basket/confirmed') {
     return 0
   }
   return basketStore.productsInBasket.reduce((total, product) => total + product.amount, 0)
 })
 
 onMounted(async () => {
-  try {
-    await userStore.checkIfLoggedIn()
-  } catch (error) {
-
-  }
+  await userStore.checkIfLoggedIn()
 
   if (userStore.isUser) {
-   await basketStore.loadBasket()
+    await basketStore.loadBasket()
   }
 })
 
@@ -36,7 +32,8 @@ onMounted(async () => {
   <header>
     <nav class="nav nav-underline bg-body-tertiary p-2">
       <RouterLink to="/" class="nav-link ">Home</RouterLink>
-      <RouterLink v-if="userStore.isUser" to="/basket" class="nav-link ">Warenkorb ({{basketProductsAmount}})</RouterLink>
+      <RouterLink v-if="userStore.isUser" to="/basket" class="nav-link ">Warenkorb ({{ basketProductsAmount }})
+      </RouterLink>
       <RouterLink v-if="userStore.isAdmin" to="/products" class="nav-link">Produkte anlegen</RouterLink>
       <template v-if="user?.userId">
         <RouterLink @click="userStore.logout()" to="/" class="nav-link">Logout</RouterLink>
