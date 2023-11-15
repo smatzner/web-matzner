@@ -13,7 +13,7 @@ const user = computed(() => userStore.user)
 
 
 onBeforeMount(async () => {
-  if(products.value.length < 1) await productStore.loadProducts()
+  await productStore.loadProducts()
 })
 
 </script>
